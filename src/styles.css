@@ -1,4 +1,13 @@
+:root{
+    --background: #ECFAE5;
+    --lime: #D2FF72;
+    --light-green: #73EC8B;
+    --green: #54C392;
+    --dark-green: #15B392;
+}
+
 body {
     height: 100vh;
     width: 100vw;
+    background-color: var(--background);
 }
