@@ -7,7 +7,6 @@ class toDo {
         this.dueDate = dueDate;
         this.priority = "low";
         this.complete = false;
-
     }
     
 }
@@ -23,8 +22,12 @@ function priorityChange(obj){
             "low" ;
 }
 
+function editDescription(obj, input){
+    return obj.descritpion = input;
+}
 
 
 
-export { toDo , changeToDoCompletion, priorityChange }
+
+export { toDo , changeToDoCompletion, priorityChange, editDescription }
 
