@@ -2,8 +2,10 @@ import "./styles.css"
 import { toDo, changeToDoCompletion, priorityChange, editDescription} from "./toDoTasks.js"
 import { project } from "./projects.js"
 import { sidebarMenu } from "./sidebar.js"
+import { dialog } from "./dialog.js"
 
 sidebarMenu();
+dialog();
 
 const task1 = new toDo('some task', 'have to complete sometask', '02/05/25')
 const task2 = new toDo('new task', 'new task to complete', '03/05/25')
