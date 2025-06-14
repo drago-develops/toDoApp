@@ -2,10 +2,28 @@ import "./styles.css"
 import { toDo, changeToDoCompletion, priorityChange, editDescription} from "./toDoTasks.js"
 import { project } from "./projects.js"
 import { sidebarMenu } from "./sidebar.js"
-import { dialog } from "./dialog.js"
+import { dialogCreation, showDialog } from "./dialog.js"
 
 sidebarMenu();
-dialog();
+dialogCreation();
+
+
+
+const addButton = document.getElementById('addButton');
+addButton.addEventListener('click', () =>{
+    dialog.show();
+})
+
+const closeDialog = document.getElementById('closeDialog');
+closeDialog.addEventListener('click', () => {
+    dialog.close();
+})
+
+
+
+
+
+
 
 const task1 = new toDo('some task', 'have to complete sometask', '02/05/25')
 const task2 = new toDo('new task', 'new task to complete', '03/05/25')
