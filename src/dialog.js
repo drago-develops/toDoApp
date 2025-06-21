@@ -8,18 +8,21 @@ const dialogCreation = function(){
     const dialogForm = document.createElement('dialog');
     dialogForm.setAttribute('id', 'dialog');
 
-    const headline = document.createElement('h2')
-    headline.textContent = 'Create a new...'
-
     const heading = document.createElement('div');
     heading.setAttribute('id', 'heading')    
     dialogForm.appendChild(heading);
+
+    const headline = document.createElement('h2')
+    headline.textContent = 'Create a new...'
     heading.appendChild(headline);
 
     const closeButton = document.createElement('button');
     closeButton.setAttribute('id', 'closeDialog');
     closeButton.textContent = 'X';
-    headline.appendChild(closeButton);
+    heading.appendChild(closeButton);
+    closeButton.addEventListener('click', () => {
+        dialogForm.close();
+    });
 
     const dialogContainer = document.createElement('div');
     dialogContainer.setAttribute('id', 'dialogContainer');
@@ -47,9 +50,19 @@ const dialogCreation = function(){
     const formToDo = document.createElement('form')
     formToDo.setAttribute('id', 'toDoFrom');
     
-
     body.appendChild(dialogForm)
+
+    closeButton.addEventListener('click', () => {
+        dialogForm.close();
+    } )
+    
 }
+
+
+
+
+
+
 
 
 

@@ -20,6 +20,9 @@ export const sidebarMenu = function(){
     const addButton = document.createElement('button');
     addButton.setAttribute('id', 'addButton');
     addButton.textContent = '+';
+    addButton.addEventListener('click', () =>{
+        dialog.showModal();
+    });
     
 
     divSidebar.appendChild(addButton);
