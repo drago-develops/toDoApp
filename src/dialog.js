@@ -89,6 +89,12 @@ const dialogTaskDisplay = function(){
   taskFieldset.setAttribute('id', 'taskFieldset');
   form.appendChild(taskFieldset);
 
+  //legend for task field
+  const taskLegend = document.createElement('legend');
+  taskLegend.setAttribute('id', 'taskLegend');
+  taskLegend.textContent = 'To Do Task';
+  taskFieldset.appendChild(taskLegend);
+
   //get title of task
   const taskTitleLabel = document.createElement('label');
   taskTitleLabel.setAttribute('for', 'getTaskTitle');
@@ -161,6 +167,12 @@ const dialogProjcetDisplay = function(){
   const projectFieldset = document.createElement('fieldset');
   projectFieldset.setAttribute('id', 'projectFieldset');
   toBeReplaced.replaceWith(projectFieldset);
+
+  //legend for project field
+  const projectLegend = document.createElement('legend');
+  projectLegend.setAttribute('id', 'taskLegend');
+  projectLegend.textContent = 'Project';
+  projectFieldset.appendChild(projectLegend);
 
   //get title of project
   const projectTitleLabel = document.createElement('label');
