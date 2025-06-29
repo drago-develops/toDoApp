@@ -6,10 +6,10 @@ export { dialogCreation }
 const dialogCreation = function(){
     const body = document.querySelector('body');
     const dialogForm = document.createElement('dialog');
-    dialogForm.setAttribute('id', 'dialog');
+    dialogForm.setAttribute('class', 'dialog');
 
     const heading = document.createElement('div');
-    heading.setAttribute('id', 'heading')    
+    heading.setAttribute('class', 'heading')    
     dialogForm.appendChild(heading);
 
     const headline = document.createElement('h2')
@@ -17,7 +17,7 @@ const dialogCreation = function(){
     heading.appendChild(headline);
 
     const closeButton = document.createElement('button');
-    closeButton.setAttribute('id', 'closeDialog');
+    closeButton.setAttribute('class', 'closeDialog');
     closeButton.textContent = 'X';
     heading.appendChild(closeButton);
     closeButton.addEventListener('click', () => {
@@ -25,16 +25,16 @@ const dialogCreation = function(){
     });
 
     const dialogContainer = document.createElement('div');
-    dialogContainer.setAttribute('id', 'dialogContainer');
+    dialogContainer.setAttribute('class', 'dialogContainer');
     dialogForm.appendChild(dialogContainer);
 
 
     const options = document.createElement('div');
-    options.setAttribute('id', 'options');
+    options.setAttribute('class', 'options');
     dialogContainer.appendChild(options);
 
     const dialogDisplay = document.createElement('div');
-    dialogDisplay.setAttribute('id', 'dialogDisplay');
+    dialogDisplay.setAttribute('class', 'dialogDisplay');
     dialogContainer.appendChild(dialogDisplay);
 
     const dialogMessage = document.createElement('h1');
@@ -42,7 +42,7 @@ const dialogCreation = function(){
     dialogDisplay.appendChild(dialogMessage);
 
     const optionToDo = document.createElement('button');
-    optionToDo.setAttribute('id', 'addToDoButton');
+    optionToDo.setAttribute('class', 'addToDoButton');
     optionToDo.textContent = 'Task'
     options.appendChild(optionToDo);
     optionToDo.addEventListener('click', () => {
@@ -51,7 +51,7 @@ const dialogCreation = function(){
 
 
     const optionProject = document.createElement('button');
-    optionProject.setAttribute('id', 'addProjectButton');
+    optionProject.setAttribute('class', 'addProjectButton');
     optionProject.textContent = 'Project'
     options.appendChild(optionProject);
     optionProject.addEventListener('click', () =>{
@@ -59,7 +59,7 @@ const dialogCreation = function(){
     })
 
     const formToDo = document.createElement('form')
-    formToDo.setAttribute('id', 'toDoFrom');
+    formToDo.setAttribute('class', 'toDoFrom');
     
     body.appendChild(dialogForm)
 
@@ -78,7 +78,7 @@ function setAttributes(el, attrs) {
 
 //creating task form in a dialog
 const dialogTaskDisplay = function(){
-  const dialogDisplay = document.getElementById('dialogDisplay');
+  const dialogDisplay = document.querySelector('.dialogDisplay');
   const toBeReplaced = dialogDisplay.firstChild
 
   const form = document.createElement('form');
@@ -86,12 +86,12 @@ const dialogTaskDisplay = function(){
   toBeReplaced.replaceWith(form);
 
   const taskFieldset = document.createElement('fieldset');
-  taskFieldset.setAttribute('id', 'taskFieldset');
+  taskFieldset.setAttribute('class', 'taskFieldset');
   form.appendChild(taskFieldset);
 
   //legend for task field
   const taskLegend = document.createElement('legend');
-  taskLegend.setAttribute('id', 'taskLegend');
+  taskLegend.setAttribute('class', 'taskLegend');
   taskLegend.textContent = 'To Do Task';
   taskFieldset.appendChild(taskLegend);
 
@@ -127,7 +127,7 @@ const dialogTaskDisplay = function(){
 
   //priority selection for a task
   const divPriorities = document.createElement('div');
-  divPriorities.setAttribute('id', 'priorities');
+  divPriorities.setAttribute('class', 'priorities');
   taskFieldset.appendChild(divPriorities);
 
   const lowPriority = document.createElement('input');
@@ -161,16 +161,16 @@ const dialogTaskDisplay = function(){
 
 //creating project form in a dialog
 const dialogProjcetDisplay = function(){
-  const dialogDisplay = document.getElementById('dialogDisplay');
+  const dialogDisplay = document.querySelector('.dialogDisplay');
   const toBeReplaced = dialogDisplay.firstChild
 
   const projectFieldset = document.createElement('fieldset');
-  projectFieldset.setAttribute('id', 'projectFieldset');
+  projectFieldset.setAttribute('class', 'projectFieldset');
   toBeReplaced.replaceWith(projectFieldset);
 
   //legend for project field
   const projectLegend = document.createElement('legend');
-  projectLegend.setAttribute('id', 'taskLegend');
+  projectLegend.setAttribute('class', 'taskLegend');
   projectLegend.textContent = 'Project';
   projectFieldset.appendChild(projectLegend);
 

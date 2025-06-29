@@ -3,22 +3,12 @@ import "./stylesDialog.css"
 import { toDo, changeToDoCompletion, priorityChange, editDescription} from "./toDoTasks.js"
 import { project } from "./projects.js"
 import { sidebarMenu } from "./sidebar.js"
-import { dialogCreation, dialogFormDisplay} from "./dialog.js"
+import { dialogCreation } from "./dialog.js"
 
-sidebarMenu();
 dialogCreation();
-//dialogFormDisplay();
+sidebarMenu();
 
 
-// const addButton = document.getElementById('addButton');
-// addButton.addEventListener('click', () =>{
-//     dialog.showModal();
-// })
-
-// const closeButton = document.getElementById("closeDialog")
-// closeButton.addEventListener('click', () => {
-//     dialog.close();
-// })
 
 
 
