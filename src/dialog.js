@@ -7,7 +7,7 @@ import { project } from "./projects.js"
 //creating dialog in html
 export { dialogCreation }
 
-
+//creating dialog with js to add it to HTML
 const dialogCreation = function(){
     const body = document.querySelector('body');
     const dialogForm = document.createElement('dialog');
@@ -86,10 +86,12 @@ const dialogTaskDisplay = function(){
   const dialogDisplay = document.querySelector('.dialogDisplay');
   const toBeReplaced = dialogDisplay.firstChild
 
+  //creating form
   const form = document.createElement('form');
   form.setAttribute('method', 'dialog');
   toBeReplaced.replaceWith(form);
 
+  //creating fieldset
   const taskFieldset = document.createElement('fieldset');
   taskFieldset.setAttribute('class', 'taskFieldset');
   form.appendChild(taskFieldset);
@@ -106,6 +108,7 @@ const dialogTaskDisplay = function(){
   taskTitleLabel.textContent = 'Title: ';
   taskFieldset.appendChild(taskTitleLabel);
 
+  //task title
   const taskTitle = document.createElement('input');
   setAttributes(taskTitle, {'type':'input', 'id':'getTaskTitle', 'name':'taskTitle'});
   taskFieldset.appendChild(taskTitle);
@@ -116,6 +119,7 @@ const dialogTaskDisplay = function(){
   taskDescriptionLabel.textContent = 'Description: ';
   taskFieldset.appendChild(taskDescriptionLabel);
 
+  //task decription
   const taskDescription = document.createElement('textarea');
   setAttributes(taskDescription, {'id':'getTaskDescription', 'name':'taskDescription', 'maxlength':'100'});
   taskFieldset.appendChild(taskDescription);
@@ -164,6 +168,7 @@ const dialogTaskDisplay = function(){
 
   const fieldset = document.querySelector('.taskFieldset');
 
+  //submit button for task
   const submitTaskButton = document.createElement('input');
   setAttributes(submitTaskButton, {'type':'submit', 'class':'submitTaskButton','value':'Add Task'})
   fieldset.appendChild(submitTaskButton);
@@ -179,10 +184,12 @@ const dialogProjcetDisplay = function(){
   const dialogDisplay = document.querySelector('.dialogDisplay');
   const toBeReplaced = dialogDisplay.firstChild
 
+  //creating form
   const form = document.createElement('form');
   form.setAttribute('method', 'dialog');
   toBeReplaced.replaceWith(form);
 
+  //fieldset for project
   const projectFieldset = document.createElement('fieldset');
   projectFieldset.setAttribute('class', 'projectFieldset');
   form.appendChild(projectFieldset);
@@ -199,10 +206,12 @@ const dialogProjcetDisplay = function(){
   projectTitleLabel.textContent = 'Project Title:';
   projectFieldset.appendChild(projectTitleLabel);
 
+  //input for projet title
   const projectTitle = document.createElement('input');
   setAttributes(projectTitle, {'type':'input', 'id':'getProjectTitle', 'name':'projectTitle'});
   projectFieldset.appendChild(projectTitle);
 
+  //submit button 
   const submitProjectButton = document.createElement('input');
   setAttributes(submitProjectButton, {'type':'submit', 'class':'submitProjectButton', 'value':'Add Project'});
   projectFieldset.appendChild(submitProjectButton);
@@ -212,7 +221,7 @@ const dialogProjcetDisplay = function(){
   })
 }
 
-//submit button for task form
+//submit button for task form that will instantiate new toDo in the app
 const submitTaskButtonFunction = function(){
   const titleValue = document.querySelector('#getTaskTitle')
   const descriptionValue = document.querySelector('#getTaskDescription')
@@ -223,7 +232,7 @@ const submitTaskButtonFunction = function(){
   console.log(newTask);
 }
 
-//submit button for project form
+//submit button for project form that will instantiate new project in the app
 const submitProjectButtonFunction = function(){
   const projectTitleValue = document.querySelector('#getProjectTitle');
 
