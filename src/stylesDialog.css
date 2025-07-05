@@ -2,7 +2,7 @@ dialog:open{
     border-radius: 10px;
     border-color: var(--dark-green);
     border-width: 2px;
-    height: 300px;
+    height: 350px;
     width: 500px;
     background-color: var(--light-green);
     margin: 0;
@@ -87,4 +87,6 @@ input[type='radio']{
     padding: none;
     width: 10px;
 }
+
+/* styling for input[type="submit"] can be found in style.css, as I wanted to style them like other buttons */
 

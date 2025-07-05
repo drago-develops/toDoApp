@@ -196,7 +196,7 @@ const dialogProjcetDisplay = function(){
   //get title of project
   const projectTitleLabel = document.createElement('label');
   projectTitleLabel.setAttribute('for', 'getProjectTitle');
-  projectTitleLabel.textContent = 'Project Title';
+  projectTitleLabel.textContent = 'Project Title:';
   projectFieldset.appendChild(projectTitleLabel);
 
   const projectTitle = document.createElement('input');

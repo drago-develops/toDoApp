@@ -85,7 +85,7 @@ footer{
 
 
 
-button {
+button, input[type="submit"] {
   align-items: center;
   background-color: var(--dark-green);
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -114,7 +114,9 @@ button {
 }
 
 button:hover,
-button:focus {
+button:focus, 
+input[type="submit"]:hover,
+input[type="submit"]:focus {
   border-color: rgba(0, 0, 0, 0.15);
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   color: rgba(0, 0, 0, 0.65);
@@ -124,7 +126,8 @@ button:hover {
   transform: translateY(-1px);
 }
 
-button:active {
+button:active,
+input[type="submit"] {
   background-color: #F0F0F1;
   border-color: rgba(0, 0, 0, 0.15);
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
