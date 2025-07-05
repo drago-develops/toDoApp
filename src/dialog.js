@@ -1,7 +1,12 @@
+import { toDo } from "./toDoTasks.js"
+import { project } from "./projects.js"
+
+
 //adding dialog and its functinality into the app web.
 
 //creating dialog in html
 export { dialogCreation }
+
 
 const dialogCreation = function(){
     const body = document.querySelector('body');
@@ -157,6 +162,16 @@ const dialogTaskDisplay = function(){
   highPriorityLabel.textContent = 'High';
   divPriorities.appendChild(highPriorityLabel);
 
+  const fieldset = document.querySelector('.taskFieldset');
+
+  const submitTaskButton = document.createElement('input');
+  setAttributes(submitTaskButton, {'type':'submit', 'class':'submitTaskButton','value':'Add Task'})
+  fieldset.appendChild(submitTaskButton);
+
+  submitTaskButton.addEventListener('click', () =>{
+    submitTaskButtonFunction();
+  })
+
 };  
 
 //creating project form in a dialog
@@ -164,9 +179,13 @@ const dialogProjcetDisplay = function(){
   const dialogDisplay = document.querySelector('.dialogDisplay');
   const toBeReplaced = dialogDisplay.firstChild
 
+  const form = document.createElement('form');
+  form.setAttribute('method', 'dialog');
+  toBeReplaced.replaceWith(form);
+
   const projectFieldset = document.createElement('fieldset');
   projectFieldset.setAttribute('class', 'projectFieldset');
-  toBeReplaced.replaceWith(projectFieldset);
+  form.appendChild(projectFieldset);
 
   //legend for project field
   const projectLegend = document.createElement('legend');
@@ -183,9 +202,33 @@ const dialogProjcetDisplay = function(){
   const projectTitle = document.createElement('input');
   setAttributes(projectTitle, {'type':'input', 'id':'getProjectTitle', 'name':'projectTitle'});
   projectFieldset.appendChild(projectTitle);
+
+  const submitProjectButton = document.createElement('input');
+  setAttributes(submitProjectButton, {'type':'submit', 'class':'submitProjectButton', 'value':'Add Project'});
+  projectFieldset.appendChild(submitProjectButton);
+
+  submitProjectButton.addEventListener('click', () => {
+    submitProjectButtonFunction();
+  })
 }
 
+//submit button for task form
+const submitTaskButtonFunction = function(){
+  const titleValue = document.querySelector('#getTaskTitle')
+  const descriptionValue = document.querySelector('#getTaskDescription')
+  const dueDateValue = document.querySelector('#getTaskDueDate')
+  
+  const newTask = new toDo(titleValue.value, descriptionValue.value, dueDateValue.value )
+  console.log(newTask);
+}
 
+//submit button for project form
+const submitProjectButtonFunction = function(){
+  const projectTitleValue = document.querySelector('#getProjectTitle');
+
+  const newProject = new project(projectTitleValue.value);
+  console.log(newProject)
+}
 
 
 
