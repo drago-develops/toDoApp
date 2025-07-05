@@ -217,8 +217,9 @@ const submitTaskButtonFunction = function(){
   const titleValue = document.querySelector('#getTaskTitle')
   const descriptionValue = document.querySelector('#getTaskDescription')
   const dueDateValue = document.querySelector('#getTaskDueDate')
+  const prioritieValue = document.querySelector('input[name="priority"]:checked');
   
-  const newTask = new toDo(titleValue.value, descriptionValue.value, dueDateValue.value )
+  const newTask = new toDo(titleValue.value, descriptionValue.value, dueDateValue.value, prioritieValue.value )
   console.log(newTask);
 }
 

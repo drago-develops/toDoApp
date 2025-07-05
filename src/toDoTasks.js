@@ -5,7 +5,7 @@ class toDo {
         this.title = title;
         this.descritpion = descritpion;
         this.dueDate = dueDate;
-        this.priority = "low";
+        this.priority = priority;
         this.complete = false;
     }
     
