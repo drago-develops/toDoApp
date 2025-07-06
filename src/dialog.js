@@ -110,7 +110,7 @@ const dialogTaskDisplay = function(){
 
   //task title
   const taskTitle = document.createElement('input');
-  setAttributes(taskTitle, {'type':'input', 'id':'getTaskTitle', 'name':'taskTitle'});
+  setAttributes(taskTitle, {'type':'input', 'id':'getTaskTitle', 'name':'taskTitle', 'required':''});
   taskFieldset.appendChild(taskTitle);
 
   //get brief description for task 
@@ -121,7 +121,7 @@ const dialogTaskDisplay = function(){
 
   //task decription
   const taskDescription = document.createElement('textarea');
-  setAttributes(taskDescription, {'id':'getTaskDescription', 'name':'taskDescription', 'maxlength':'100'});
+  setAttributes(taskDescription, {'id':'getTaskDescription', 'name':'taskDescription', 'maxlength':'100', 'required':''});
   taskFieldset.appendChild(taskDescription);
 
   //set dueDate
@@ -131,7 +131,7 @@ const dialogTaskDisplay = function(){
   taskFieldset.appendChild(taskDueDateLabel);
 
   const taskDueDate = document.createElement('input');
-  setAttributes(taskDueDate, {'type':'date', 'id':'getTaskDueDate', 'name':'taskDueDate'});
+  setAttributes(taskDueDate, {'type':'date', 'id':'getTaskDueDate', 'name':'taskDueDate', 'required':''});
   taskFieldset.appendChild(taskDueDate);
 
   //priority selection for a task
@@ -208,7 +208,7 @@ const dialogProjcetDisplay = function(){
 
   //input for projet title
   const projectTitle = document.createElement('input');
-  setAttributes(projectTitle, {'type':'input', 'id':'getProjectTitle', 'name':'projectTitle'});
+  setAttributes(projectTitle, {'type':'input', 'id':'getProjectTitle', 'name':'projectTitle', 'required':''});
   projectFieldset.appendChild(projectTitle);
 
   //submit button 
