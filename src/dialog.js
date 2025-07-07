@@ -166,18 +166,48 @@ const dialogTaskDisplay = function(){
   highPriorityLabel.textContent = 'High';
   divPriorities.appendChild(highPriorityLabel);
 
-  const fieldset = document.querySelector('.taskFieldset');
+  //creating drop down selection for task to be added to a project
+  const selectProjectLabel = document.createElement('label');
+  selectProjectLabel.setAttribute('for', 'projectSelection');
+  selectProjectLabel.textContent = 'Choose a project:'
+  taskFieldset.appendChild(selectProjectLabel);
+
+  const selectProject = document.createElement('select');
+  setAttributes(selectProject, {'id':'projectSelection', 'name':'projectList'});
+  taskFieldset.appendChild(selectProject);
+
+  const homeSelectOption = document.createElement('option');
+  homeSelectOption.setAttribute('value','home');
+  homeSelectOption.textContent = 'not assiged to project'
+  selectProject.appendChild(homeSelectOption);
+
+  //loop that will add selection options of projects to the drop down
+  const projectList = ['decorating','home reno', 'sports day']
+
+  for (const i in projectList){
+    const variableName  = document.createElement('option');
+    variableName.setAttribute('value', `${projectList[i]}`);
+    variableName.textContent = `${projectList[i]}`;
+    selectProject.appendChild(variableName);
+  }
 
   //submit button for task
   const submitTaskButton = document.createElement('input');
   setAttributes(submitTaskButton, {'type':'submit', 'class':'submitTaskButton','value':'Add Task'})
-  fieldset.appendChild(submitTaskButton);
+  taskFieldset.appendChild(submitTaskButton);
 
   submitTaskButton.addEventListener('click', () =>{
     submitTaskButtonFunction();
   })
 
 };  
+
+//function that will add task to a project on a submission
+const addTaskToProject = function(){
+  const projectSelection = document.getElementById('projectSelection')
+  const outputValue = projectSelection.value;
+  
+}
 
 //creating project form in a dialog
 const dialogProjcetDisplay = function(){
