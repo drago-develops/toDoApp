@@ -2,7 +2,7 @@ dialog:open{
     border-radius: 10px;
     border-color: var(--dark-green);
     border-width: 2px;
-    height: 350px;
+    height: 400px;
     width: 500px;
     background-color: var(--light-green);
     margin: 0;
@@ -54,7 +54,7 @@ legend{
     font-weight: 700;
 }
 
-input, textarea{
+input, textarea, select{
     resize: none;
     box-sizing: border-box;
     font-family: inherit;
@@ -68,8 +68,8 @@ input, textarea{
     outline-offset: -2px;
     width: 100%;
     height: 40px;
-    border: none;
-    border-bottom: 1px solid var(--dark-green);
+    border: 1px solid var(--dark-green);
+    border-radius: 5px;
     background-color: var(--background);
     padding: 0 16px;
     color: #161616;
@@ -87,6 +87,7 @@ input[type='radio']{
     padding: none;
     width: 10px;
 }
+
 
 /* styling for input[type="submit"] can be found in style.css, as I wanted to style them like other buttons */
 

@@ -206,7 +206,7 @@ const dialogTaskDisplay = function(){
 const addTaskToProject = function(){
   const projectSelection = document.getElementById('projectSelection')
   const outputValue = projectSelection.value;
-
+  
 }
 
 //creating project form in a dialog
