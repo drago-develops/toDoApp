@@ -1,5 +1,5 @@
 import { toDo } from "./toDoTasks.js"
-import { project } from "./projects.js"
+import { project, projectArray } from "./projects.js"
 
 
 //adding dialog and its functinality into the app web.
@@ -182,7 +182,7 @@ const dialogTaskDisplay = function(){
   selectProject.appendChild(homeSelectOption);
 
   //loop that will add selection options of projects to the drop down
-  const projectList = ['decorating','home reno', 'sports day']
+  const projectList = myArrayModule.getArray();
 
   for (const i in projectList){
     const variableName  = document.createElement('option');
@@ -206,7 +206,7 @@ const dialogTaskDisplay = function(){
 const addTaskToProject = function(){
   const projectSelection = document.getElementById('projectSelection')
   const outputValue = projectSelection.value;
-  
+
 }
 
 //creating project form in a dialog
@@ -262,12 +262,19 @@ const submitTaskButtonFunction = function(){
   console.log(newTask);
 }
 
+//instantiates array that stores project titles
+const myArrayModule = projectArray();
+
 //submit button for project form that will instantiate new project in the app
 const submitProjectButtonFunction = function(){
-  const projectTitleValue = document.querySelector('#getProjectTitle');
+  const projectTitle = document.querySelector('#getProjectTitle');
+  const projectTitleValue = projectTitle.value
 
-  const newProject = new project(projectTitleValue.value);
+  const newProject = new project(projectTitleValue);
   console.log(newProject)
+  //adds project to an array function so that it later be used to add task to a project in a dialog in dropdown menu  
+  myArrayModule.addItem(projectTitleValue);
+  console.log(myArrayModule.getArray());
 }
 
 

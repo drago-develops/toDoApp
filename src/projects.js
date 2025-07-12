@@ -1,5 +1,17 @@
 //script to create projects and all their functionalities as well as adding task to them.
 
+//function for an array of all projects
+function projectArray() {
+    const arrayOfProjects = []
+
+    return {
+    getArray: () => [...arrayOfProjects], // returns a copy
+    getItem: (index) => arrayOfProjects[index],
+    addItem: (item) => arrayOfProjects.push(item),
+    removeItem: (index) => arrayOfProjects.splice(index, 1),
+  };
+}
+
 class project {
     constructor(projectTitle){
         this.projectTitle = projectTitle
@@ -23,4 +35,4 @@ class project {
     }
 }
 
-export {project}
+export { project, projectArray }
