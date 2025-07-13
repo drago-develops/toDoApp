@@ -198,15 +198,25 @@ const dialogTaskDisplay = function(){
 
   submitTaskButton.addEventListener('click', () =>{
     submitTaskButtonFunction();
+
+    //adding task to a project function
+    addTaskToProject(submitTaskButtonFunction().newTask)
   })
 
 };  
 
 //function that will add task to a project on a submission
-const addTaskToProject = function(){
+const addTaskToProject = function(obj){
   const projectSelection = document.getElementById('projectSelection')
   const outputValue = projectSelection.value;
   
+  const projectList = myArrayModule.getArray(); //to be deleted and made global
+  for (const i in projectList){
+    if(projectList[i].projectTitle === outputValue){
+      projectList[i].addTaskToProject(obj)
+    //} else {} to be done later, see the note on the computer
+    }
+  }
 }
 
 //creating project form in a dialog
@@ -260,6 +270,7 @@ const submitTaskButtonFunction = function(){
   
   const newTask = new toDo(titleValue.value, descriptionValue.value, dueDateValue.value, prioritieValue.value )
   console.log(newTask);
+  return{ newTask }; //will need that object outside that function to add task to the project in addTaskToProject();
 }
 
 //instantiates array that stores project titles
