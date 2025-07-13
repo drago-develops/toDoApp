@@ -186,8 +186,8 @@ const dialogTaskDisplay = function(){
 
   for (const i in projectList){
     const variableName  = document.createElement('option');
-    variableName.setAttribute('value', `${projectList[i]}`);
-    variableName.textContent = `${projectList[i]}`;
+    variableName.setAttribute('value', `${projectList[i].projectTitle}`);
+    variableName.textContent = `${projectList[i].projectTitle}`;
     selectProject.appendChild(variableName);
   }
 
@@ -273,7 +273,7 @@ const submitProjectButtonFunction = function(){
   const newProject = new project(projectTitleValue);
   console.log(newProject)
   //adds project to an array function so that it later be used to add task to a project in a dialog in dropdown menu  
-  myArrayModule.addItem(projectTitleValue);
+  myArrayModule.addItem(newProject);
   console.log(myArrayModule.getArray());
 }
 
