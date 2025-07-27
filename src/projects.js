@@ -35,4 +35,13 @@ class project {
     }
 }
 
-export { project, projectArray }
+//function to create "global" project for the app where all the task will go that where not 
+//assigned to any of a User projects.
+function projectForNotAssignedTasks(){
+    const globalProject = new project('not assiged to project')
+
+    return{ globalProject }
+}
+
+
+export { project, projectArray, projectForNotAssignedTasks }

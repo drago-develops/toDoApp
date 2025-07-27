@@ -1,5 +1,5 @@
 import { toDo } from "./toDoTasks.js"
-import { project, projectArray } from "./projects.js"
+import { project, projectArray, projectForNotAssignedTasks } from "./projects.js"
 
 
 //adding dialog and its functinality into the app web.
@@ -176,10 +176,11 @@ const dialogTaskDisplay = function(){
   setAttributes(selectProject, {'id':'projectSelection', 'name':'projectList'});
   taskFieldset.appendChild(selectProject);
 
-  const homeSelectOption = document.createElement('option');
-  homeSelectOption.setAttribute('value','home');
-  homeSelectOption.textContent = 'not assiged to project'
-  selectProject.appendChild(homeSelectOption);
+  
+  // const homeSelectOption = document.createElement('option'); this is made redundent due to projectForNotAssignedTasks()
+  // homeSelectOption.setAttribute('value','home');
+  // homeSelectOption.textContent = 'not assiged to project'
+  // selectProject.appendChild(homeSelectOption);
 
   //loop that will add selection options of projects to the drop down
   const projectList = myArrayModule.getArray();
@@ -198,24 +199,24 @@ const dialogTaskDisplay = function(){
 
   submitTaskButton.addEventListener('click', () =>{
     submitTaskButtonFunction();
-
+    console.log(submitTaskButtonFunction().newTask)
     //adding task to a project function
-    addTaskToProject(submitTaskButtonFunction().newTask)
+    addTaskToAProject(submitTaskButtonFunction().newTask)
   })
 
 };  
 
 //function that will add task to a project on a submission
-const addTaskToProject = function(obj){
+const addTaskToAProject = function(obj){
   const projectSelection = document.getElementById('projectSelection')
   const outputValue = projectSelection.value;
+  console.log(outputValue)
   
-  const projectList = myArrayModule.getArray(); //to be deleted and made global
-  for (const i in projectList){
-    if(projectList[i].projectTitle === outputValue){
-      projectList[i].addTaskToProject(obj)
-    //} else {} to be done later, see the note on the computer
-    }
+  const projectList = myArrayModule.getArray(); 
+  for (const i in projectList){    
+    if(projectList[i].projectTitle == outputValue){
+      projectList[i].addTaskToProject(obj);
+    } 
   }
 }
 
@@ -268,13 +269,13 @@ const submitTaskButtonFunction = function(){
   const dueDateValue = document.querySelector('#getTaskDueDate')
   const prioritieValue = document.querySelector('input[name="priority"]:checked');
   
-  const newTask = new toDo(titleValue.value, descriptionValue.value, dueDateValue.value, prioritieValue.value )
-  console.log(newTask);
-  return{ newTask }; //will need that object outside that function to add task to the project in addTaskToProject();
+  const newTask = new toDo(titleValue.value, descriptionValue.value, dueDateValue.value, prioritieValue.value );
+  return{ newTask }; //will need that object outside that function to add task to the project in addTaskToAProject();
 }
 
 //instantiates array that stores project titles
 const myArrayModule = projectArray();
+myArrayModule.addItem(projectForNotAssignedTasks().globalProject) //adds global project to the myArrayProject as a first item
 
 //submit button for project form that will instantiate new project in the app
 const submitProjectButtonFunction = function(){
