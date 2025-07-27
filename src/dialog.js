@@ -176,12 +176,6 @@ const dialogTaskDisplay = function(){
   setAttributes(selectProject, {'id':'projectSelection', 'name':'projectList'});
   taskFieldset.appendChild(selectProject);
 
-  
-  // const homeSelectOption = document.createElement('option'); this is made redundent due to projectForNotAssignedTasks()
-  // homeSelectOption.setAttribute('value','home');
-  // homeSelectOption.textContent = 'not assiged to project'
-  // selectProject.appendChild(homeSelectOption);
-
   //loop that will add selection options of projects to the drop down
   const projectList = myArrayModule.getArray();
 
@@ -210,7 +204,6 @@ const dialogTaskDisplay = function(){
 const addTaskToAProject = function(obj){
   const projectSelection = document.getElementById('projectSelection')
   const outputValue = projectSelection.value;
-  console.log(outputValue)
   
   const projectList = myArrayModule.getArray(); 
   for (const i in projectList){    
