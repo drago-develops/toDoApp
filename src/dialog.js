@@ -1,5 +1,5 @@
 import { toDo } from "./toDoTasks.js"
-import { project, projectArray, projectForNotAssignedTasks } from "./projects.js"
+import { project, projectForNotAssignedTasks, myArrayModule } from "./projects.js"
 
 
 //adding dialog and its functinality into the app web.
@@ -267,7 +267,6 @@ const submitTaskButtonFunction = function(){
 }
 
 //instantiates array that stores project titles
-const myArrayModule = projectArray();
 myArrayModule.addItem(projectForNotAssignedTasks().globalProject) //adds global project to the myArrayProject as a first item
 
 //submit button for project form that will instantiate new project in the app

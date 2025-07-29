@@ -12,6 +12,8 @@ function projectArray() {
   };
 }
 
+const myArrayModule = projectArray();
+
 class project {
     constructor(projectTitle){
         this.projectTitle = projectTitle
@@ -44,4 +46,4 @@ function projectForNotAssignedTasks(){
 }
 
 
-export { project, projectArray, projectForNotAssignedTasks }
+export { project, projectArray, projectForNotAssignedTasks, myArrayModule }
