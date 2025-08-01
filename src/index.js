@@ -4,6 +4,8 @@ import { toDo, changeToDoCompletion, priorityChange, editDescription} from "./to
 import { project } from "./projects.js"
 import { sidebarMenu } from "./sidebar.js"
 import { dialogCreation } from "./dialog.js"
-
+import { homeDisplayButtonFunction } from "./mainDiv.js"
+ 
 dialogCreation();
 sidebarMenu();
+homeDisplayButtonFunction();

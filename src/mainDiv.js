@@ -1,14 +1,18 @@
 import { myArrayModule } from "./projects.js"
+export { homeDisplayButtonFunction }
 
-const homeDisplay = document.querySelector('.allToDos');
-homeDisplay.addEventListener('click', () =>{
-    taskMainDivPopulate();
-    getTaskDetails();
-})
+const homeDisplayButtonFunction = function(){
+    const homeDisplayButton = document.querySelector('.allToDos');
+    homeDisplayButton.addEventListener('click', () =>{
+        taskMainDivPopulate();
+        getTaskDetails();
+    })
+}
+
 
 //function to populate mainDiv
 const taskMainDivPopulate = function(){
-
+    console.log('check log mainDiv')
 }
 
 //function that will get details of task from projects (project Arrays) 
