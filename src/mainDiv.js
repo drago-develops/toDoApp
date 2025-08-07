@@ -5,22 +5,47 @@ const homeDisplayButtonFunction = function(){
     const homeDisplayButton = document.querySelector('.allToDos');
     homeDisplayButton.addEventListener('click', () =>{
         taskMainDivPopulate();
-        getTaskDetails();
     })
 }
 
 
-//function to populate mainDiv
+//function to populate mainDiv by getting task details from myArrayModule.getArray();
 const taskMainDivPopulate = function(){
     console.log('check log mainDiv')
-}
 
-//function that will get details of task from projects (project Arrays) 
-// and then will be used to fill in the details in taskMainDivPopulate()
-const getTaskDetails = function(){
+    //gets array with all projects (globalProjects/notAssigned aswell) and task in them
     const getProjectsInfo = myArrayModule.getArray();
-    
+
+    //loop to filter through for tasks only and get the details
     for (const i  in getProjectsInfo){
         console.log(getProjectsInfo[i].projectArray)
-    }
+        for (const j in getProjectsInfo[i].projectArray){
+            const taskTitle = getProjectsInfo[i].projectArray[j].title;
+            const taskDueDate = getProjectsInfo[i].projectArray[j].dueDate;
+            const taskPriority = getProjectsInfo[i].projectArray[j].priority
+
+            console.log(taskTitle);
+            //creates task in the mainDiv and displays it with task details
+            const mainDiv = document.querySelector('.main')
+            const taskDiplayMainDiv = document.createElement('div');
+            taskDiplayMainDiv.setAttribute('class', 'taskDiplayMainDiv');
+            mainDiv.appendChild(taskDiplayMainDiv);
+
+            const taskMainDivTitle = document.createElement('p');
+            taskMainDivTitle.textContent = taskTitle;
+            taskDiplayMainDiv.appendChild(taskMainDivTitle);
+
+            const taskMainDivDueDate = document.createElement('p');
+            taskMainDivDueDate.textContent = taskDueDate;
+            taskDiplayMainDiv.appendChild(taskMainDivDueDate);
+
+            const taskMainDivPriority = document.createElement('p');
+            taskMainDivPriority.textContent = taskPriority;
+            taskDiplayMainDiv.appendChild(taskMainDivPriority);
+
+        }
+        
+    }    
+    
 }
+

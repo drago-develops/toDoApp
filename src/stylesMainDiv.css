@@ -1,0 +1,17 @@
+.taskDiplayMainDiv{
+    border: 1px solid var(--light-green);
+    height: 50px;
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--background);
+    padding: 2px;
+    margin: 2px;
+    border-radius: 15px;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
