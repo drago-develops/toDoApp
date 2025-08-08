@@ -4,15 +4,28 @@ export { homeDisplayButtonFunction }
 const homeDisplayButtonFunction = function(){
     const homeDisplayButton = document.querySelector('.allToDos');
     homeDisplayButton.addEventListener('click', () =>{
+        blankSlateMainDiv();
         taskMainDivPopulate();
     })
+}
+
+//checks if the div#main exist and "cleans it" from displayed tasks
+//this is done to ensure that tasks are not being duplicated on .main
+const blankSlateMainDiv = function(){
+    if(document.querySelector('.main') != null){
+        document.querySelector('.main').remove();
+    };
+    const mainDiv = document.createElement('div');
+    mainDiv.setAttribute('class', 'main');
+    const body = document.querySelector('body');
+    body.appendChild(mainDiv);
 }
 
 
 //function to populate mainDiv by getting task details from myArrayModule.getArray();
 const taskMainDivPopulate = function(){
-    console.log('check log mainDiv')
-
+    console.log('check log mainDiv')  
+    
     //gets array with all projects (globalProjects/notAssigned aswell) and task in them
     const getProjectsInfo = myArrayModule.getArray();
 
@@ -25,8 +38,8 @@ const taskMainDivPopulate = function(){
             const taskPriority = getProjectsInfo[i].projectArray[j].priority
 
             console.log(taskTitle);
-            //creates task in the mainDiv and displays it with task details
-            const mainDiv = document.querySelector('.main')
+            //creates task in the mainDiv and displays it with task details  
+            const mainDiv = document.querySelector('.main');          
             const taskDiplayMainDiv = document.createElement('div');
             taskDiplayMainDiv.setAttribute('class', 'taskDiplayMainDiv');
             mainDiv.appendChild(taskDiplayMainDiv);
