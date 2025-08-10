@@ -2,12 +2,11 @@
 import { myArrayModule } from "./projects.js"
 export{ projectJsonToLocalStorage }
 
-//gets array with all projects (globalProjects/notAssigned aswell) and task in them
-const getProjectsInfo = myArrayModule.getArray();
-
+//function to converts project including task array into JSON and stores it in localStorage
 const projectJsonToLocalStorage = function(){
-    const projectJsonConstant = JSON.stringify(getProjectsInfo);
-    console.log(projectJsonConstant);
+    //gets array with all projects (globalProjects/notAssigned aswell) and task in them
+    const getProjects = myArrayModule.getArray();
+    const projectJsonConstant = JSON.stringify(getProjects);
     localStorage.setItem('projectsInfo', projectJsonConstant);
 } 
 

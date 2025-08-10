@@ -1,5 +1,6 @@
-import { toDo } from "./toDoTasks.js"
-import { project, projectForNotAssignedTasks, myArrayModule } from "./projects.js"
+import { toDo } from "./toDoTasks.js";
+import { project, projectForNotAssignedTasks, myArrayModule } from "./projects.js";
+import { projectJsonToLocalStorage } from "./json.js";
 
 
 //adding dialog and its functinality into the app web.
@@ -196,6 +197,8 @@ const dialogTaskDisplay = function(){
     console.log(submitTaskButtonFunction().newTask)
     //adding task to a project function
     addTaskToAProject(submitTaskButtonFunction().newTask)
+    //storing task in localStorage
+    projectJsonToLocalStorage();
   })
 
 };  
@@ -252,6 +255,8 @@ const dialogProjcetDisplay = function(){
 
   submitProjectButton.addEventListener('click', () => {
     submitProjectButtonFunction();
+    //storing project in localStorage
+    projectJsonToLocalStorage();
   })
 }
 
