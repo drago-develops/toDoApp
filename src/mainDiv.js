@@ -1,11 +1,15 @@
 import { myArrayModule } from "./projects.js"
 export { homeDisplayButtonFunction }
 
+
+
 const homeDisplayButtonFunction = function(){
     const homeDisplayButton = document.querySelector('.allToDos');
     homeDisplayButton.addEventListener('click', () =>{
         blankSlateMainDiv();
-        taskMainDivPopulate();
+        //gets array with all projects (globalProjects/notAssigned aswell) and task in them
+        const getProjectsInfo = myArrayModule.getArray();
+        taskMainDivPopulate(getProjectsInfo);
     })
 }
 
@@ -23,19 +27,16 @@ const blankSlateMainDiv = function(){
 
 
 //function to populate mainDiv by getting task details from myArrayModule.getArray();
-const taskMainDivPopulate = function(){
+const taskMainDivPopulate = function(arr){
     console.log('check log mainDiv')  
     
-    //gets array with all projects (globalProjects/notAssigned aswell) and task in them
-    const getProjectsInfo = myArrayModule.getArray();
-
     //loop to filter through for tasks only and get the details
-    for (const i  in getProjectsInfo){
-        console.log(getProjectsInfo[i].projectArray)
-        for (const j in getProjectsInfo[i].projectArray){
-            const taskTitle = getProjectsInfo[i].projectArray[j].title;
-            const taskDueDate = getProjectsInfo[i].projectArray[j].dueDate;
-            const taskPriority = getProjectsInfo[i].projectArray[j].priority
+    for (const i  in arr){
+        console.log(arr[i].projectArray)
+        for (const j in arr[i].projectArray){
+            const taskTitle = arr[i].projectArray[j].title;
+            const taskDueDate = arr[i].projectArray[j].dueDate;
+            const taskPriority = arr[i].projectArray[j].priority
 
             console.log(taskTitle);
             //creates task in the mainDiv and displays it with task details  
