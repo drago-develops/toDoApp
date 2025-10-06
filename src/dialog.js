@@ -1,5 +1,5 @@
 import { toDo } from "./toDoTasks.js";
-import { project, projectForNotAssignedTasks, myArrayModule } from "./projects.js";
+import { Project, projectForNotAssignedTasks, projectManager } from "./projects.js";
 import { projectJsonToLocalStorage } from "./json.js";
 
 
@@ -178,7 +178,7 @@ const dialogTaskDisplay = function(){
   taskFieldset.appendChild(selectProject);
 
   //loop that will add selection options of projects to the drop down
-  const projectList = myArrayModule.getArray();
+  const projectList = projectManager.getAll();
 
   for (const i in projectList){
     const variableName  = document.createElement('option');
@@ -208,7 +208,7 @@ const addTaskToAProject = function(obj){
   const projectSelection = document.getElementById('projectSelection')
   const outputValue = projectSelection.value;
   
-  const projectList = myArrayModule.getArray(); 
+  const projectList = projectManager.getAll(); 
   for (const i in projectList){    
     if(projectList[i].projectTitle == outputValue){
       projectList[i].addTaskToProject(obj);
@@ -271,19 +271,16 @@ const submitTaskButtonFunction = function(){
   return{ newTask }; //will need that object outside that function to add task to the project in addTaskToAProject();
 }
 
-//instantiates array that stores project titles
-myArrayModule.addItem(projectForNotAssignedTasks().globalProject) //adds global project to the myArrayProject as a first item
-
 //submit button for project form that will instantiate new project in the app
 const submitProjectButtonFunction = function(){
   const projectTitle = document.querySelector('#getProjectTitle');
   const projectTitleValue = projectTitle.value
 
-  const newProject = new project(projectTitleValue);
+  const newProject = new Project(projectTitleValue);
   console.log(newProject)
   //adds project to an array function so that it later be used to add task to a project in a dialog in dropdown menu  
-  myArrayModule.addItem(newProject);
-  console.log(myArrayModule.getArray());
+  projectManager.add(newProject);
+  console.log(projectManager.getAll());
 }
 
 

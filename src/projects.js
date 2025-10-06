@@ -1,49 +1,39 @@
 //script to create projects and all their functionalities as well as adding task to them.
+import { projectJsonLocalStorageRetrive } from "./json.js"
 
-//function for an array of all projects
-function projectArray() {
-    const arrayOfProjects = []
-
-    return {
-    getArray: () => [...arrayOfProjects], // returns a copy
-    getItem: (index) => arrayOfProjects[index],
-    addItem: (item) => arrayOfProjects.push(item),
-    removeItem: (index) => arrayOfProjects.splice(index, 1),
-  };
-}
-
-const myArrayModule = projectArray();
-
-class project {
-    constructor(projectTitle){
-        this.projectTitle = projectTitle
-        this.projectArray = []
+class Project {
+    constructor(projectTitle) {
+        this.projectTitle = projectTitle;
+        this.projectArray = [];
     }
 
-    //add a toDo to the project
-    addTaskToProject(obj){
-        return this.projectArray.push(obj)
+    addTaskToProject(task) {
+        this.projectArray.push(task);
     }
 
-    //remove task toDo from the project 
-    removeTaskFromProject(obj){
-        for (let i=0; i < this.projectArray.length; i++){
-            if (this.projectArray[i] == obj ){
-                const indexOfObj = this.projectArray.indexOf(this.projectArray[i])
-                this.projectArray.splice(indexOfObj, 1)
-            }
-        }
-        
+    removeTaskFromProject(task) {
+        this.projectArray = this.projectArray.filter(t => t !== task);
     }
 }
 
-//function to create "global" project for the app where all the task will go that where not 
-//assigned to any of a User projects.
-function projectForNotAssignedTasks(){
-    const globalProject = new project('not assiged to project')
+// This holds all projects in memory
+let projects = [];
 
-    return{ globalProject }
+// Manager object for CRUD operations
+const projectManager = {
+    getAll: () => [...projects],
+    get: (index) => projects[index],
+    add: (proj) => projects.push(proj),
+    remove: (index) => projects.splice(index, 1),
+    setAll: (newProjects) => { projects = newProjects; }
+};
+
+// Default global project for unassigned tasks
+function projectForNotAssignedTasks() {
+    return new Project("not assigned to project");
 }
 
+//instantiates array that stores project titles
+projectManager.add(projectForNotAssignedTasks()) //adds global project to the myArrayProject as a first item
 
-export { project, projectArray, projectForNotAssignedTasks, myArrayModule }
+export { Project, projectManager, projectForNotAssignedTasks };
