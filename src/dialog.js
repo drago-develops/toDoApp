@@ -209,8 +209,10 @@ const addTaskToAProject = function(obj){
   const outputValue = projectSelection.value;
   
   const projectList = projectManager.getAll(); 
+  console.log(projectList)
   for (const i in projectList){    
     if(projectList[i].projectTitle == outputValue){
+      console.log(projectList[i])
       projectList[i].addTaskToProject(obj);
     } 
   }

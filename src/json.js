@@ -1,6 +1,7 @@
 //js file to save projects(and toDos/tasks) to localStorage using Json file.
 
-import { projectManager } from "./projects.js";
+import { Project, projectManager, projectForNotAssignedTasks } from "./projects.js";
+
 
 const projectJsonToLocalStorage = function () {
     const projectJsonConstant = JSON.stringify(projectManager.getAll());
@@ -12,8 +13,16 @@ const projectJsonLocalStorageRetrive = function () {
 
     if (retriveJsonProjects) {
         const parsed = JSON.parse(retriveJsonProjects);
-        projectManager.setAll(parsed);
-        return parsed;
+
+        // Rebuild actual Project instances from parsed data
+        const restoredProjects = parsed.map((projData) => {
+            const proj = new Project(projData.projectTitle);
+            proj.projectArray = projData.projectArray || [];
+            return proj;
+        });
+
+        projectManager.setAll(restoredProjects);
+        return restoredProjects;
     }
 
 };

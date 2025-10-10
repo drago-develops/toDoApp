@@ -8,6 +8,55 @@ const homeDisplayButtonFunction = function () {
     });
 };
 
+const projectDisplayButtonFunction = function () {
+    const projectDisplayButton = document.querySelector('.allProjects');
+    projectDisplayButton.addEventListener("click", () =>{
+        blankSlateMainDiv();
+        projectMainDivPopulate(projectJsonLocalStorageRetrive())
+    })
+};
+
+const projectMainDivPopulate = function (arr) {
+    console.log('Populating mainDiv with projects..."')
+    
+    for (const project of arr) {
+
+        const projectTitle = project;
+
+        const mainDiv = document.querySelector(".main");
+        const projectDisplayMainDiv = document.createElement('div');
+        projectDisplayMainDiv.setAttribute('class', 'projectDisplayMainDiv');
+        mainDiv.appendChild(projectDisplayMainDiv);
+
+        const projectMainDivTitle = document.createElement('p');
+        projectMainDivTitle.textContent = projectTitle;
+        projectDisplayMainDiv.appendChild(projectMainDivTitle);
+
+
+        for (const task of project.projectArray) {
+            const { title, dueDate, priority } = task;
+
+            const mainDiv = document.querySelector(".main");
+            const taskDiplayMainDiv = document.createElement("div");
+            taskDiplayMainDiv.setAttribute("class", "taskDiplayMainDiv");
+            mainDiv.appendChild(taskDiplayMainDiv);
+
+            const taskMainDivTitle = document.createElement("p");
+            taskMainDivTitle.textContent = title;
+            taskDiplayMainDiv.appendChild(taskMainDivTitle);
+
+            const taskMainDivDueDate = document.createElement("p");
+            taskMainDivDueDate.textContent = dueDate;
+            taskDiplayMainDiv.appendChild(taskMainDivDueDate);
+
+            const taskMainDivPriority = document.createElement("p");
+            taskMainDivPriority.textContent = priority;
+            taskDiplayMainDiv.appendChild(taskMainDivPriority);
+        }
+    }
+};
+
+
 const blankSlateMainDiv = function () {
     const existingMain = document.querySelector(".main");
     if (existingMain) existingMain.remove();
