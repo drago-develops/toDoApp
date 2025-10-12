@@ -1,6 +1,7 @@
 import { toDo } from "./toDoTasks.js";
 import { Project, projectForNotAssignedTasks, projectManager } from "./projects.js";
-import { projectJsonToLocalStorage } from "./json.js";
+import { projectJsonToLocalStorage, projectJsonLocalStorageRetrive } from "./json.js";
+import { blankSlateMainDiv, taskMainDivPopulate } from "./mainDiv.js"
 
 
 //adding dialog and its functinality into the app web.
@@ -199,6 +200,9 @@ const dialogTaskDisplay = function(){
     addTaskToAProject(submitTaskButtonFunction().newTask)
     //storing task in localStorage
     projectJsonToLocalStorage();
+    //now task need to be displayed on main div
+    blankSlateMainDiv();
+    taskMainDivPopulate(projectJsonLocalStorageRetrive());
   })
 
 };  
