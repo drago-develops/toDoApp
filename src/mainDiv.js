@@ -21,16 +21,20 @@ const projectMainDivPopulate = function (arr) {
     
     for (const project of arr) {
 
-        const projectTitle = project;
+        const projectItem = project;
 
         const mainDiv = document.querySelector(".main");
         const projectDisplayMainDiv = document.createElement('div');
         projectDisplayMainDiv.setAttribute('class', 'projectDisplayMainDiv');
         mainDiv.appendChild(projectDisplayMainDiv);
 
-        const projectMainDivTitle = document.createElement('p');
-        projectMainDivTitle.textContent = projectTitle;
-        projectDisplayMainDiv.appendChild(projectMainDivTitle);
+        const individaulProjectDisplay = document.createElement('div');
+        individaulProjectDisplay.setAttribute("class", "individualProjectDisplay");
+        projectDisplayMainDiv.appendChild(individaulProjectDisplay);        
+
+        const projectMainDivTitle = document.createElement('h3');
+        projectMainDivTitle.textContent = projectItem.projectTitle;
+        individaulProjectDisplay.appendChild(projectMainDivTitle);
 
 
         for (const task of project.projectArray) {
@@ -39,7 +43,7 @@ const projectMainDivPopulate = function (arr) {
             const mainDiv = document.querySelector(".main");
             const taskDiplayMainDiv = document.createElement("div");
             taskDiplayMainDiv.setAttribute("class", "taskDiplayMainDiv");
-            mainDiv.appendChild(taskDiplayMainDiv);
+            individaulProjectDisplay.appendChild(taskDiplayMainDiv);
 
             const taskMainDivTitle = document.createElement("p");
             taskMainDivTitle.textContent = title;
@@ -93,4 +97,4 @@ const taskMainDivPopulate = function (arr) {
     }
 };
 
-export { homeDisplayButtonFunction, taskMainDivPopulate, blankSlateMainDiv };
+export { homeDisplayButtonFunction, taskMainDivPopulate, projectDisplayButtonFunction, blankSlateMainDiv };
