@@ -97,4 +97,4 @@ const taskMainDivPopulate = function (arr) {
     }
 };
 
-export { homeDisplayButtonFunction, taskMainDivPopulate, projectDisplayButtonFunction, blankSlateMainDiv };
+export { homeDisplayButtonFunction, taskMainDivPopulate, projectMainDivPopulate, blankSlateMainDiv, projectDisplayButtonFunction };
