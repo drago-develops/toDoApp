@@ -56,6 +56,10 @@ const projectMainDivPopulate = function (arr) {
             const taskMainDivPriority = document.createElement("p");
             taskMainDivPriority.textContent = priority;
             taskDiplayMainDiv.appendChild(taskMainDivPriority);
+
+            //colouring task border with priority lvl
+            const borderBottomStyleSelector = priorityLvLHandler(priority)
+            taskDiplayMainDiv.style.borderBottom = borderBottomStyleSelector;
         }
     }
 };
@@ -93,8 +97,23 @@ const taskMainDivPopulate = function (arr) {
             const taskMainDivPriority = document.createElement("p");
             taskMainDivPriority.textContent = priority;
             taskDiplayMainDiv.appendChild(taskMainDivPriority);
+
+            
+            //colouring task border with priority lvl
+            const borderBottomStyleSelector = priorityLvLHandler(priority)
+            taskDiplayMainDiv.style.borderBottom = borderBottomStyleSelector;
         }
     }
 };
+
+//logic to highlight task priority lvl with colour
+function priorityLvLHandler(lvl) {
+    const selectorLvl = {
+        "low": "solid 3px #008000",
+        "medium": "solid 3px #dada23d3",
+        "high": "solid 3px #DC143C"
+    };
+    return selectorLvl[lvl];
+}
 
 export { homeDisplayButtonFunction, taskMainDivPopulate, projectMainDivPopulate, blankSlateMainDiv, projectDisplayButtonFunction };
