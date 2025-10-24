@@ -91,7 +91,10 @@ const taskMainDivPopulate = function (arr) {
             taskDiplayMainDiv.appendChild(taskMainDivTitle);
 
             const taskMainDivDueDate = document.createElement("p");
-            taskMainDivDueDate.textContent = dueDate;
+            const dueDateHandler  = new Date(dueDate)
+            const taskMainDivDueDateMonth = dueDateHandler.getMonth();
+            const taskMainDivDueDateDay = dueDateHandler.getDate();
+            taskMainDivDueDate.textContent = taskMainDivDueDateDay + " " + monthNames[taskMainDivDueDateMonth];
             taskDiplayMainDiv.appendChild(taskMainDivDueDate);
 
             const taskMainDivPriority = document.createElement("p");
@@ -105,6 +108,9 @@ const taskMainDivPopulate = function (arr) {
         }
     }
 };
+
+//month shortcut names for task dueDate display
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 //logic to highlight task priority lvl with colour
 function priorityLvLHandler(lvl) {

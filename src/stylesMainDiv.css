@@ -23,3 +23,6 @@ div.taskDiplayMainDiv:hover{
     border: 3px solid var(--green);
     box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
 }
+div.taskDiplayMainDiv>p:nth-child(2){
+    font-weight: bold;
+}
