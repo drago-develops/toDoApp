@@ -36,7 +36,6 @@ const projectMainDivPopulate = function (arr) {
         projectMainDivTitle.textContent = projectItem.projectTitle;
         individaulProjectDisplay.appendChild(projectMainDivTitle);
 
-
         for (const task of project.projectArray) {
             const { title, dueDate, priority } = task;
 
@@ -50,8 +49,12 @@ const projectMainDivPopulate = function (arr) {
             taskDiplayMainDiv.appendChild(taskMainDivTitle);
 
             const taskMainDivDueDate = document.createElement("p");
-            taskMainDivDueDate.textContent = dueDate;
+            const dueDateHandler  = new Date(dueDate)
+            const taskMainDivDueDateMonth = dueDateHandler.getMonth();
+            const taskMainDivDueDateDay = dueDateHandler.getDate();
+            taskMainDivDueDate.textContent = taskMainDivDueDateDay + " " + monthNames[taskMainDivDueDateMonth];
             taskDiplayMainDiv.appendChild(taskMainDivDueDate);
+
 
             const taskMainDivPriority = document.createElement("p");
             taskMainDivPriority.textContent = priority;
