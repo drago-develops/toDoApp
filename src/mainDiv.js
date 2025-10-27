@@ -1,4 +1,5 @@
 import { projectJsonLocalStorageRetrive } from "./json.js";
+import trashCanOutline from "./icons/trashCanOutline.svg";
 
 const homeDisplayButtonFunction = function () {
     const homeDisplayButton = document.querySelector(".allToDos");
@@ -60,12 +61,23 @@ const projectMainDivPopulate = function (arr) {
             taskMainDivPriority.textContent = priority;
             taskDiplayMainDiv.appendChild(taskMainDivPriority);
 
+            //delete task button from project
+            const deleteTaskButton = document.createElement('img');
+            deleteTaskButton.setAttribute('class', 'deleteTaskButton')
+            deleteTaskButton.src = trashCanOutline;
+            deleteTaskButton.setAttribute('height', '20px');
+            deleteTaskButton.setAttribute('width', '20px');
+            taskDiplayMainDiv.appendChild(deleteTaskButton)
+
+
             //colouring task border with priority lvl
-            const borderBottomStyleSelector = priorityLvLHandler(priority)
+            const borderBottomStyleSelector = priorityLvLHandler(priority);
             taskDiplayMainDiv.style.borderBottom = borderBottomStyleSelector;
         }
     }
 };
+
+
 
 
 const blankSlateMainDiv = function () {
