@@ -67,8 +67,8 @@ const projectMainDivPopulate = function (arr) {
             deleteTaskButton.src = trashCanOutline;
             deleteTaskButton.setAttribute('height', '20px');
             deleteTaskButton.setAttribute('width', '20px');
+            deleteTaskButton.onclick = deleteTaskButtonFunction
             taskDiplayMainDiv.appendChild(deleteTaskButton)
-
 
             //colouring task border with priority lvl
             const borderBottomStyleSelector = priorityLvLHandler(priority);
@@ -77,8 +77,9 @@ const projectMainDivPopulate = function (arr) {
     }
 };
 
-
-
+const deleteTaskButtonFunction = function() {
+    console.log("delete img button clicked'")    
+}
 
 const blankSlateMainDiv = function () {
     const existingMain = document.querySelector(".main");
@@ -137,4 +138,4 @@ function priorityLvLHandler(lvl) {
     return selectorLvl[lvl];
 }
 
-export { homeDisplayButtonFunction, taskMainDivPopulate, projectMainDivPopulate, blankSlateMainDiv, projectDisplayButtonFunction };
+export { homeDisplayButtonFunction, taskMainDivPopulate, projectMainDivPopulate, blankSlateMainDiv, projectDisplayButtonFunction,};
