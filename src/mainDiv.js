@@ -1,5 +1,6 @@
-import { projectJsonLocalStorageRetrive } from "./json.js";
+import { projectJsonLocalStorageRetrive, projectJsonToLocalStorage } from "./json.js";
 import trashCanOutline from "./icons/trashCanOutline.svg";
+import { projectManager } from "./projects.js";
 
 const homeDisplayButtonFunction = function () {
     const homeDisplayButton = document.querySelector(".allToDos");
@@ -38,12 +39,15 @@ const projectMainDivPopulate = function (arr) {
         individaulProjectDisplay.appendChild(projectMainDivTitle);
 
         for (const task of project.projectArray) {
-            const { title, dueDate, priority } = task;
+            const { id, title, dueDate, priority } = task;
 
             const mainDiv = document.querySelector(".main");
             const taskDiplayMainDiv = document.createElement("div");
             taskDiplayMainDiv.setAttribute("class", "taskDiplayMainDiv");
             individaulProjectDisplay.appendChild(taskDiplayMainDiv);
+
+            taskDiplayMainDiv.dataset.taskId = task.id;
+            taskDiplayMainDiv.dataset.projectTitle = projectItem.projectTitle;
 
             const taskMainDivTitle = document.createElement("p");
             taskMainDivTitle.textContent = title;
@@ -78,8 +82,30 @@ const projectMainDivPopulate = function (arr) {
 };
 
 const deleteTaskButtonFunction = function() {
-    console.log("delete img button clicked'")    
-}
+    console.log("delete img button clicked'")
+    // The <img> was clicked → parent is the task div
+    const taskDiv = event.target.closest(".taskDiplayMainDiv");
+
+    const taskId = taskDiv.dataset.taskId;
+    const projectTitle = taskDiv.dataset.projectTitle;
+
+    // find the correct project
+    const projects = projectManager.getAll();
+    const project = projects.find(p => p.projectTitle === projectTitle);
+
+    if (!project) return;
+
+    // remove task by ID
+    project.projectArray = project.projectArray.filter(task => task.id !== taskId);
+
+    // update localStorage
+    projectJsonToLocalStorage();
+
+    // refresh UI
+    blankSlateMainDiv();
+    projectMainDivPopulate(projectJsonLocalStorageRetrive());
+};
+
 
 const blankSlateMainDiv = function () {
     const existingMain = document.querySelector(".main");
