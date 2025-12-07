@@ -26,3 +26,8 @@ div.taskDiplayMainDiv:hover{
 div.taskDiplayMainDiv>p:nth-child(2){
     font-weight: bold;
 }
+
+img.deleteTaskButton:hover {
+  height: 25px;
+  width: 25px;
+}
