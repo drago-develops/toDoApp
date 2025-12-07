@@ -1,5 +1,6 @@
 import { projectJsonLocalStorageRetrive, projectJsonToLocalStorage } from "./json.js";
-import trashCanOutline from "./icons/trashCanOutline.svg";
+import trashCanOutline  from "./icons/trashCanOutline.svg";
+import trashCan from "./icons/trashCan.svg";
 import { projectManager } from "./projects.js";
 
 const homeDisplayButtonFunction = function () {
@@ -78,8 +79,22 @@ const projectMainDivPopulate = function (arr) {
             const borderBottomStyleSelector = priorityLvLHandler(priority);
             taskDiplayMainDiv.style.borderBottom = borderBottomStyleSelector;
         }
+
+        //delete project button
+            const deleteProjectButton = document.createElement('img');
+            deleteProjectButton.setAttribute('class', 'deleteProjectButton')
+            deleteProjectButton.src = trashCan;
+            deleteProjectButton.setAttribute('height', '20px');
+            deleteProjectButton.setAttribute('width', '20px');
+            deleteProjectButton.onclick = deleteProjectButtonFunction;
+            individaulProjectDisplay.appendChild(deleteProjectButton)
     }
 };
+
+const deleteProjectButtonFunction = function() {
+    console.log('deleteProject');
+    
+}
 
 const deleteTaskButtonFunction = function() {
     console.log("delete img button clicked'")
