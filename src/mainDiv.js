@@ -143,6 +143,15 @@ const taskMainDivPopulate = function (arr) {
             taskMainDivPriority.textContent = priority;
             taskDiplayMainDiv.appendChild(taskMainDivPriority);
 
+            //delete task button from project
+            const deleteTaskButton = document.createElement('img');
+            deleteTaskButton.setAttribute('class', 'deleteTaskButton')
+            deleteTaskButton.src = trashCanOutline;
+            deleteTaskButton.setAttribute('height', '20px');
+            deleteTaskButton.setAttribute('width', '20px');
+            deleteTaskButton.onclick = deleteTaskButtonFunction
+            taskDiplayMainDiv.appendChild(deleteTaskButton)
+
             
             //colouring task border with priority lvl
             const borderBottomStyleSelector = priorityLvLHandler(priority)
