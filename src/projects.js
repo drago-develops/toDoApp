@@ -5,6 +5,7 @@ class Project {
     constructor(projectTitle) {
         this.projectTitle = projectTitle;
         this.projectArray = [];
+        this.id = crypto.randomUUID(); //unique identifier
     }
 
     addTaskToProject(task) {

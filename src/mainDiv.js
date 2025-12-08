@@ -93,7 +93,24 @@ const projectMainDivPopulate = function (arr) {
 
 const deleteProjectButtonFunction = function() {
     console.log('deleteProject');
-    
+
+    const projectDiv = event.target.closest(".individualProjectDisplay");
+
+    const projectId = projectDiv.dataset.projectId;
+    const projects = projectManager.getAll();
+
+    //projects = projects.filter(project => project.id !== projectId);
+    const index = projects.findIndex(project => project.id === projectId);
+
+    projectManager.remove(index);
+
+
+    // update localStorage
+    projectJsonToLocalStorage();
+
+    // refresh UI
+    blankSlateMainDiv();
+    projectMainDivPopulate(projectJsonLocalStorageRetrive());
 }
 
 const deleteTaskButtonFunction = function() {
