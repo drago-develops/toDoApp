@@ -2,6 +2,9 @@ import { projectJsonLocalStorageRetrive, projectJsonToLocalStorage } from "./jso
 import trashCanOutline  from "./icons/trashCanOutline.svg";
 import trashCan from "./icons/trashCan.svg";
 import { projectManager } from "./projects.js";
+import { dialogProjectDeleteCreation } from "./dialogDeleteProjects.js"
+import { setPendingProjectDeleteId } from "./deleteState.js";
+
 
 const homeDisplayButtonFunction = function () {
     const homeDisplayButton = document.querySelector(".allToDos");
@@ -33,6 +36,7 @@ const projectMainDivPopulate = function (arr) {
 
         const individaulProjectDisplay = document.createElement('div');
         individaulProjectDisplay.setAttribute("class", "individualProjectDisplay");
+        individaulProjectDisplay.dataset.projectId = projectItem.id;
         projectDisplayMainDiv.appendChild(individaulProjectDisplay);        
 
         const projectMainDivTitle = document.createElement('h3');
@@ -81,26 +85,40 @@ const projectMainDivPopulate = function (arr) {
         }
 
         //delete project button
-            const deleteProjectButton = document.createElement('img');
-            deleteProjectButton.setAttribute('class', 'deleteProjectButton')
-            deleteProjectButton.src = trashCan;
-            deleteProjectButton.setAttribute('height', '20px');
-            deleteProjectButton.setAttribute('width', '20px');
-            deleteProjectButton.onclick = deleteProjectButtonFunction;
-            individaulProjectDisplay.appendChild(deleteProjectButton)
+        const deleteProjectButton = document.createElement('img');
+        deleteProjectButton.setAttribute('class', 'deleteProjectButton')
+        deleteProjectButton.src = trashCan;
+        deleteProjectButton.setAttribute('height', '20px');
+        deleteProjectButton.setAttribute('width', '20px');
+        deleteProjectButton.addEventListener("click", (e) => {
+            const projectDiv = e.currentTarget.closest(".individualProjectDisplay");
+            const projectId = projectDiv.dataset.projectId;
+
+            setPendingProjectDeleteId(projectId);
+            deleteProjectDialog();
+        });
+
+        individaulProjectDisplay.appendChild(deleteProjectButton)
     }
 };
 
-const deleteProjectButtonFunction = function() {
+const deleteProjectDialog = function() {
+    const dialogProject = document.querySelector(".dialogProjectDelete");
+    dialogProject.showModal();
+}
+
+const deleteProjectButtonFunction = function(projectId) {
     console.log('deleteProject');
+    
+    //const projectDiv = event.target.closest(".individualProjectDisplay");
 
-    const projectDiv = event.target.closest(".individualProjectDisplay");
-
-    const projectId = projectDiv.dataset.projectId;
+    //const projectId = projectDivId.dataset.projectId;
     const projects = projectManager.getAll();
 
     //projects = projects.filter(project => project.id !== projectId);
     const index = projects.findIndex(project => project.id === projectId);
+
+    if (index === -1) return;
 
     projectManager.remove(index);
 
@@ -205,4 +223,4 @@ function priorityLvLHandler(lvl) {
     return selectorLvl[lvl];
 }
 
-export { homeDisplayButtonFunction, taskMainDivPopulate, projectMainDivPopulate, blankSlateMainDiv, projectDisplayButtonFunction,};
+export { homeDisplayButtonFunction, taskMainDivPopulate, projectMainDivPopulate, blankSlateMainDiv, projectDisplayButtonFunction, deleteProjectButtonFunction};

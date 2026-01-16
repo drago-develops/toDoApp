@@ -8,11 +8,12 @@ import { sidebarMenu } from "./sidebar.js";
 import { dialogCreation } from "./dialog.js";
 import { homeDisplayButtonFunction, taskMainDivPopulate, projectDisplayButtonFunction} from "./mainDiv.js";
 import { projectJsonLocalStorageRetrive } from "./json.js";
+import { dialogProjectDeleteCreation } from "./dialogDeleteProjects.js"
 
 dialogCreation();
 sidebarMenu();
 homeDisplayButtonFunction();
 projectDisplayButtonFunction();
-
+dialogProjectDeleteCreation();
 // Load tasks on startup
 taskMainDivPopulate(projectJsonLocalStorageRetrive());
