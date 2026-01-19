@@ -1,6 +1,7 @@
 import { projectJsonLocalStorageRetrive, projectJsonToLocalStorage } from "./json.js";
 import trashCanOutline  from "./icons/trashCanOutline.svg";
 import trashCan from "./icons/trashCan.svg";
+import chevronDown from "./icons/chevronDown.svg"
 import { projectManager } from "./projects.js";
 import { dialogProjectDeleteCreation } from "./dialogDeleteProjects.js"
 import { setPendingProjectDeleteId } from "./deleteState.js";
@@ -69,6 +70,14 @@ const projectMainDivPopulate = function (arr) {
             const taskMainDivPriority = document.createElement("p");
             taskMainDivPriority.textContent = priority;
             taskDiplayMainDiv.appendChild(taskMainDivPriority);
+
+            //drop down icon to see details of toDo
+            const dropDownIcon = document.createElement('img');
+            dropDownIcon.setAttribute('class', 'dropDownIcon');
+            dropDownIcon.src = chevronDown;
+            dropDownIcon.setAttribute('height', '20px');
+            dropDownIcon.setAttribute('width', '20px');
+            taskDiplayMainDiv.appendChild(dropDownIcon);
 
             //delete task button from project
             const deleteTaskButton = document.createElement('img');
@@ -201,6 +210,14 @@ const taskMainDivPopulate = function (arr) {
             taskMainDivPriority.textContent = priority;
             taskDiplayMainDiv.appendChild(taskMainDivPriority);
 
+            //drop down icon to see details of toDo
+            const dropDownIcon = document.createElement('img');
+            dropDownIcon.setAttribute('class', 'dropDownIcon');
+            dropDownIcon.src = chevronDown;
+            dropDownIcon.setAttribute('height', '20px');
+            dropDownIcon.setAttribute('width', '20px');
+            taskDiplayMainDiv.appendChild(dropDownIcon);
+
             //delete task button from project
             const deleteTaskButton = document.createElement('img');
             deleteTaskButton.setAttribute('class', 'deleteTaskButton')
@@ -209,7 +226,6 @@ const taskMainDivPopulate = function (arr) {
             deleteTaskButton.setAttribute('width', '20px');
             deleteTaskButton.onclick = deleteTaskButtonFunction
             taskDiplayMainDiv.appendChild(deleteTaskButton)
-
             
             //colouring task border with priority lvl
             const borderBottomStyleSelector = priorityLvLHandler(priority)
