@@ -100,7 +100,15 @@ const projectMainDivPopulate = function (arr) {
 
         individaulProjectDisplay.appendChild(deleteProjectButton)
     }
+    removeBinIcon();
 };
+
+//a function to remove bin icon from "not assigned to project" since that shouldn't be removed by User
+const removeBinIcon = function() {
+    const projectBinIconCollection = document.getElementsByClassName('deleteProjectButton');
+    const binIcon = projectBinIconCollection[0];
+    binIcon.remove();
+}
 
 const deleteProjectDialog = function() {
     const dialogProject = document.querySelector(".dialogProjectDelete");
@@ -223,4 +231,4 @@ function priorityLvLHandler(lvl) {
     return selectorLvl[lvl];
 }
 
-export { homeDisplayButtonFunction, taskMainDivPopulate, projectMainDivPopulate, blankSlateMainDiv, projectDisplayButtonFunction, deleteProjectButtonFunction};
+export { homeDisplayButtonFunction, taskMainDivPopulate, projectMainDivPopulate, blankSlateMainDiv, projectDisplayButtonFunction, deleteProjectButtonFunction };
