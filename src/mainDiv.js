@@ -78,7 +78,7 @@ const projectMainDivPopulate = function (arr) {
             dropDownIcon.setAttribute('height', '20px');
             dropDownIcon.setAttribute('width', '20px');
             dropDownIcon.addEventListener('click', (event) =>{
-                seeToDoDetails(event);
+                seeToDoDetailsPopulate(seeToDoDetails(event).task, event);
             });
             taskDiplayMainDiv.appendChild(dropDownIcon);
 
@@ -222,7 +222,7 @@ const taskMainDivPopulate = function (arr) {
             dropDownIcon.setAttribute('height', '20px');
             dropDownIcon.setAttribute('width', '20px');
             dropDownIcon.addEventListener('click', (event) =>{
-                seeToDoDetails(event);
+                seeToDoDetailsPopulate(seeToDoDetails(event).task, event);
             });
             taskDiplayMainDiv.appendChild(dropDownIcon);
 
@@ -257,6 +257,26 @@ const seeToDoDetails = function(event) {
     return { task }
 };
 
+const seeToDoDetailsPopulate = function (task, event) {
+    // The <img> was clicked → parent is the task div
+    const taskDiv = event.target.closest(".taskDiplayMainDiv");
+
+    const { descritpion, complete } = task;
+    const seeTaskDetails = document.createElement('div');
+    seeTaskDetails.setAttribute('class', 'taskDetails');
+    taskDiv.appendChild(seeTaskDetails);
+
+    const taskDescription = document.createElement('p');
+    taskDescription.setAttribute('class', 'taskSeeDescription');
+    taskDescription.textContent = descritpion; 
+    seeTaskDetails.appendChild(taskDescription);
+
+    const taskCompletion = document.createElement('p');
+    taskCompletion.setAttribute('class', 'taskSeeCompletion');
+    taskCompletion.textContent = complete;
+    seeTaskDetails.appendChild(taskCompletion);
+    
+}
 //month shortcut names for task dueDate display
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
