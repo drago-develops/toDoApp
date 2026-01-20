@@ -77,6 +77,9 @@ const projectMainDivPopulate = function (arr) {
             dropDownIcon.src = chevronDown;
             dropDownIcon.setAttribute('height', '20px');
             dropDownIcon.setAttribute('width', '20px');
+            dropDownIcon.addEventListener('click', (event) =>{
+                seeToDoDetails(event);
+            });
             taskDiplayMainDiv.appendChild(dropDownIcon);
 
             //delete task button from project
@@ -188,12 +191,14 @@ const taskMainDivPopulate = function (arr) {
 
     for (const project of arr) {
         for (const task of project.projectArray) {
-            const { title, dueDate, priority } = task;
+            const { id, title, dueDate, priority } = task;
 
             const mainDiv = document.querySelector(".main");
             const taskDiplayMainDiv = document.createElement("div");
             taskDiplayMainDiv.setAttribute("class", "taskDiplayMainDiv");
             mainDiv.appendChild(taskDiplayMainDiv);
+
+            taskDiplayMainDiv.dataset.taskId = task.id;
 
             const taskMainDivTitle = document.createElement("p");
             taskMainDivTitle.textContent = title;
@@ -216,6 +221,9 @@ const taskMainDivPopulate = function (arr) {
             dropDownIcon.src = chevronDown;
             dropDownIcon.setAttribute('height', '20px');
             dropDownIcon.setAttribute('width', '20px');
+            dropDownIcon.addEventListener('click', (event) =>{
+                seeToDoDetails(event);
+            });
             taskDiplayMainDiv.appendChild(dropDownIcon);
 
             //delete task button from project
@@ -232,6 +240,21 @@ const taskMainDivPopulate = function (arr) {
             taskDiplayMainDiv.style.borderBottom = borderBottomStyleSelector;
         }
     }
+};
+
+const seeToDoDetails = function(event) {
+    // The <img> was clicked → parent is the task div
+    const taskDiv = event.target.closest(".taskDiplayMainDiv");
+
+    const taskId = taskDiv.dataset.taskId;
+    // find the correct project
+    const projects = projectManager.getAll();
+    
+    const task = projects
+        .flatMap(({ projectArray }) => projectArray)
+        .find(task => task.id === taskId);
+    console.log(task)
+    return { task }
 };
 
 //month shortcut names for task dueDate display
