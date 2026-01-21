@@ -1,7 +1,7 @@
 import { projectJsonLocalStorageRetrive, projectJsonToLocalStorage } from "./json.js";
 import trashCanOutline  from "./icons/trashCanOutline.svg";
 import trashCan from "./icons/trashCan.svg";
-import chevronDown from "./icons/chevronDown.svg"
+import chevronRight from "./icons/chevronRight.svg"
 import { projectManager } from "./projects.js";
 import { dialogProjectDeleteCreation } from "./dialogDeleteProjects.js"
 import { setPendingProjectDeleteId } from "./deleteState.js";
@@ -74,7 +74,7 @@ const projectMainDivPopulate = function (arr) {
             //drop down icon to see details of toDo
             const dropDownIcon = document.createElement('img');
             dropDownIcon.setAttribute('class', 'dropDownIcon');
-            dropDownIcon.src = chevronDown;
+            dropDownIcon.src = chevronRight;
             dropDownIcon.setAttribute('height', '20px');
             dropDownIcon.setAttribute('width', '20px');
             dropDownIcon.addEventListener('click', (event) =>{
@@ -218,7 +218,7 @@ const taskMainDivPopulate = function (arr) {
             //drop down icon to see details of toDo
             const dropDownIcon = document.createElement('img');
             dropDownIcon.setAttribute('class', 'dropDownIcon');
-            dropDownIcon.src = chevronDown;
+            dropDownIcon.src = chevronRight;
             dropDownIcon.setAttribute('height', '20px');
             dropDownIcon.setAttribute('width', '20px');
             dropDownIcon.addEventListener('click', (event) =>{
