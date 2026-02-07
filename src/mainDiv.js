@@ -1,7 +1,6 @@
 import { projectJsonLocalStorageRetrive, projectJsonToLocalStorage } from "./json.js";
 import trashCanOutline  from "./icons/trashCanOutline.svg";
 import trashCan from "./icons/trashCan.svg";
-import chevronRight from "./icons/chevronRight.svg"
 import { projectManager } from "./projects.js";
 import { dialogProjectDeleteCreation } from "./dialogDeleteProjects.js"
 import { setPendingProjectDeleteId } from "./deleteState.js";
@@ -45,7 +44,7 @@ const projectMainDivPopulate = function (arr) {
         individaulProjectDisplay.appendChild(projectMainDivTitle);
 
         for (const task of project.projectArray) {
-            const { id, title, dueDate, priority } = task;
+            const { id, title, dueDate, priority, descritpion, complete } = task;
 
             const mainDiv = document.querySelector(".main");
             const taskDiplayMainDiv = document.createElement("div");
@@ -71,16 +70,23 @@ const projectMainDivPopulate = function (arr) {
             taskMainDivPriority.textContent = priority;
             taskDiplayMainDiv.appendChild(taskMainDivPriority);
 
-            //drop down icon to see details of toDo
-            const dropDownIcon = document.createElement('img');
-            dropDownIcon.setAttribute('class', 'dropDownIcon');
-            dropDownIcon.src = chevronRight;
-            dropDownIcon.setAttribute('height', '20px');
-            dropDownIcon.setAttribute('width', '20px');
-            dropDownIcon.addEventListener('click', (event) =>{
-                seeToDoDetailsPopulate(seeToDoDetails(event).task, event);
-            });
-            taskDiplayMainDiv.appendChild(dropDownIcon);
+            const dropDownDetails = document.createElement('details');
+            dropDownDetails.setAttribute('class', 'dropDownDetails');
+            taskDiplayMainDiv.appendChild(dropDownDetails);
+
+            const detailsSummary = document.createElement('summary');
+            detailsSummary.textContent = '';
+            dropDownDetails.appendChild(detailsSummary);
+
+            const taskDescription = document.createElement('p');
+            taskDescription.setAttribute('class', 'taskSeeDescription');
+            taskDescription.textContent = `Description: ${descritpion}`; 
+            dropDownDetails.appendChild(taskDescription);
+
+            const taskCompletion = document.createElement('p');
+            taskCompletion.setAttribute('class', 'taskSeeCompletion');
+            taskCompletion.textContent = `Concluded: ${complete}`;
+            dropDownDetails.appendChild(taskCompletion);
 
             //delete task button from project
             const deleteTaskButton = document.createElement('img');
@@ -191,7 +197,7 @@ const taskMainDivPopulate = function (arr) {
 
     for (const project of arr) {
         for (const task of project.projectArray) {
-            const { id, title, dueDate, priority } = task;
+            const { id, title, dueDate, priority, descritpion, complete } = task;
 
             const mainDiv = document.querySelector(".main");
             const taskDiplayMainDiv = document.createElement("div");
@@ -216,15 +222,24 @@ const taskMainDivPopulate = function (arr) {
             taskDiplayMainDiv.appendChild(taskMainDivPriority);
 
             //drop down icon to see details of toDo
-            const dropDownIcon = document.createElement('img');
-            dropDownIcon.setAttribute('class', 'dropDownIcon');
-            dropDownIcon.src = chevronRight;
-            dropDownIcon.setAttribute('height', '20px');
-            dropDownIcon.setAttribute('width', '20px');
-            dropDownIcon.addEventListener('click', (event) =>{
-                seeToDoDetailsPopulate(seeToDoDetails(event).task, event);
-            });
-            taskDiplayMainDiv.appendChild(dropDownIcon);
+            const dropDownDetails = document.createElement('details');
+            dropDownDetails.setAttribute('class', 'dropDownDetails');
+            taskDiplayMainDiv.appendChild(dropDownDetails);
+
+            const detailsSummary = document.createElement('summary');
+            detailsSummary.textContent = '';
+            dropDownDetails.appendChild(detailsSummary);
+
+            const taskDescription = document.createElement('p');
+            taskDescription.setAttribute('class', 'taskSeeDescription');
+            taskDescription.textContent = `Description: ${descritpion}`; 
+            dropDownDetails.appendChild(taskDescription);
+
+            const taskCompletion = document.createElement('p');
+            taskCompletion.setAttribute('class', 'taskSeeCompletion');
+            taskCompletion.textContent = `Concluded: ${complete}`;
+            dropDownDetails.appendChild(taskCompletion);
+
 
             //delete task button from project
             const deleteTaskButton = document.createElement('img');
@@ -242,41 +257,6 @@ const taskMainDivPopulate = function (arr) {
     }
 };
 
-const seeToDoDetails = function(event) {
-    // The <img> was clicked → parent is the task div
-    const taskDiv = event.target.closest(".taskDiplayMainDiv");
-
-    const taskId = taskDiv.dataset.taskId;
-    // find the correct project
-    const projects = projectManager.getAll();
-    
-    const task = projects
-        .flatMap(({ projectArray }) => projectArray)
-        .find(task => task.id === taskId);
-    console.log(task)
-    return { task }
-};
-
-const seeToDoDetailsPopulate = function (task, event) {
-    // The <img> was clicked → parent is the task div
-    const taskDiv = event.target.closest(".taskDiplayMainDiv");
-
-    const { descritpion, complete } = task;
-    const seeTaskDetails = document.createElement('div');
-    seeTaskDetails.setAttribute('class', 'taskDetails');
-    taskDiv.appendChild(seeTaskDetails);
-
-    const taskDescription = document.createElement('p');
-    taskDescription.setAttribute('class', 'taskSeeDescription');
-    taskDescription.textContent = descritpion; 
-    seeTaskDetails.appendChild(taskDescription);
-
-    const taskCompletion = document.createElement('p');
-    taskCompletion.setAttribute('class', 'taskSeeCompletion');
-    taskCompletion.textContent = complete;
-    seeTaskDetails.appendChild(taskCompletion);
-    
-}
 //month shortcut names for task dueDate display
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
 

@@ -29,7 +29,12 @@ div.taskDiplayMainDiv>p:nth-child(2){
 
 img.deleteTaskButton:hover,
 img.deleteProjectButton:hover,
-img.dropDownIcon:hover {
+img.dropDownIcon:hover,
+img.hideDetailsIcon:hover {
   height: 25px;
   width: 25px;
+}
+
+details{
+    margin-left: 5px;
 }
