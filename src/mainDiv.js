@@ -65,11 +65,6 @@ const projectMainDivPopulate = function (arr) {
             taskMainDivDueDate.textContent = taskMainDivDueDateDay + " " + monthNames[taskMainDivDueDateMonth];
             taskDiplayMainDiv.appendChild(taskMainDivDueDate);
 
-
-            const taskMainDivPriority = document.createElement("p");
-            taskMainDivPriority.textContent = priority;
-            taskDiplayMainDiv.appendChild(taskMainDivPriority);
-
             const dropDownDetails = document.createElement('details');
             dropDownDetails.setAttribute('class', 'dropDownDetails');
             taskDiplayMainDiv.appendChild(dropDownDetails);
@@ -77,6 +72,10 @@ const projectMainDivPopulate = function (arr) {
             const detailsSummary = document.createElement('summary');
             detailsSummary.textContent = '';
             dropDownDetails.appendChild(detailsSummary);
+
+            const taskMainDivPriority = document.createElement("p");
+            taskMainDivPriority.textContent = `Priority: ${priority}`;
+            dropDownDetails.appendChild(taskMainDivPriority);
 
             const taskDescription = document.createElement('p');
             taskDescription.setAttribute('class', 'taskSeeDescription');
@@ -217,10 +216,6 @@ const taskMainDivPopulate = function (arr) {
             taskMainDivDueDate.textContent = taskMainDivDueDateDay + " " + monthNames[taskMainDivDueDateMonth];
             taskDiplayMainDiv.appendChild(taskMainDivDueDate);
 
-            const taskMainDivPriority = document.createElement("p");
-            taskMainDivPriority.textContent = priority;
-            taskDiplayMainDiv.appendChild(taskMainDivPriority);
-
             //drop down icon to see details of toDo
             const dropDownDetails = document.createElement('details');
             dropDownDetails.setAttribute('class', 'dropDownDetails');
@@ -229,6 +224,10 @@ const taskMainDivPopulate = function (arr) {
             const detailsSummary = document.createElement('summary');
             detailsSummary.textContent = '';
             dropDownDetails.appendChild(detailsSummary);
+
+            const taskMainDivPriority = document.createElement("p");
+            taskMainDivPriority.textContent = `Priority: ${priority}`;
+            dropDownDetails.appendChild(taskMainDivPriority);
 
             const taskDescription = document.createElement('p');
             taskDescription.setAttribute('class', 'taskSeeDescription');
