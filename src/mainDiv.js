@@ -93,7 +93,10 @@ const projectMainDivPopulate = function (arr) {
             deleteTaskButton.src = trashCanOutline;
             deleteTaskButton.setAttribute('height', '20px');
             deleteTaskButton.setAttribute('width', '20px');
-            deleteTaskButton.onclick = deleteTaskButtonFunction
+            //deleteTaskButton.onclick = deleteTaskButtonFunction
+            deleteTaskButton.addEventListener('click', (event) => {
+                deleteTaskButtonFunction(event);
+            });
             taskDiplayMainDiv.appendChild(deleteTaskButton)
 
             //colouring task border with priority lvl
@@ -156,23 +159,28 @@ const deleteProjectButtonFunction = function(projectId) {
     projectMainDivPopulate(projectJsonLocalStorageRetrive());
 }
 
-const deleteTaskButtonFunction = function() {
+const deleteTaskButtonFunction = function(event) {
     console.log("delete img button clicked'")
     // The <img> was clicked → parent is the task div
     const taskDiv = event.target.closest(".taskDiplayMainDiv");
 
     const taskId = taskDiv.dataset.taskId;
-    const projectTitle = taskDiv.dataset.projectTitle;
 
-    // find the correct project
+    // find the correct project 
     const projects = projectManager.getAll();
-    const project = projects.find(p => p.projectTitle === projectTitle);
+    const project = projects.find(project =>
+        project.projectArray.some(task => task.id === taskId)
+    );
 
     if (!project) return;
 
-    // remove task by ID
-    project.projectArray = project.projectArray.filter(task => task.id !== taskId);
+    //find task and remove it 
+    const task = project.projectArray.find(task => task.id === taskId);
 
+    if (task) {
+        project.removeTaskFromProject(task);
+    }
+    
     // update localStorage
     projectJsonToLocalStorage();
 
@@ -246,7 +254,10 @@ const taskMainDivPopulate = function (arr) {
             deleteTaskButton.src = trashCanOutline;
             deleteTaskButton.setAttribute('height', '20px');
             deleteTaskButton.setAttribute('width', '20px');
-            deleteTaskButton.onclick = deleteTaskButtonFunction
+            //deleteTaskButton.onclick = deleteTaskButtonFunction
+            deleteTaskButton.addEventListener('click', (event) => {
+                deleteTaskButtonFunction(event);
+            });
             taskDiplayMainDiv.appendChild(deleteTaskButton)
             
             //colouring task border with priority lvl
