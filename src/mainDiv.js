@@ -1,6 +1,7 @@
 import { projectJsonLocalStorageRetrive, projectJsonToLocalStorage } from "./json.js";
 import trashCanOutline  from "./icons/trashCanOutline.svg";
 import trashCan from "./icons/trashCan.svg";
+import pencilIcon from "./icons/pencil.svg"
 import { projectManager } from "./projects.js";
 import { dialogProjectDeleteCreation } from "./dialogDeleteProjects.js"
 import { setPendingProjectDeleteId } from "./deleteState.js";
@@ -86,6 +87,18 @@ const projectMainDivPopulate = function (arr) {
             taskCompletion.setAttribute('class', 'taskSeeCompletion');
             taskCompletion.textContent = `Concluded: ${complete}`;
             dropDownDetails.appendChild(taskCompletion);
+
+            //edit task button
+            const editTaskButton = document.createElement('img');
+            editTaskButton.setAttribute('class', 'editTaskButton');
+            editTaskButton.src = pencilIcon;
+            editTaskButton.setAttribute('height', '20px');
+            editTaskButton.setAttribute('width', '20px');
+            editTaskButton.addEventListener('click', () =>{
+                const dialogTaskEdit = document.querySelector('.dialogEditTask');
+                dialogTaskEdit.showModal();
+            });
+            taskDiplayMainDiv.appendChild(editTaskButton);
 
             //delete task button from project
             const deleteTaskButton = document.createElement('img');
@@ -247,6 +260,17 @@ const taskMainDivPopulate = function (arr) {
             taskCompletion.textContent = `Concluded: ${complete}`;
             dropDownDetails.appendChild(taskCompletion);
 
+            //edit task button
+            const editTaskButton = document.createElement('img');
+            editTaskButton.setAttribute('class', 'editTaskButton');
+            editTaskButton.src = pencilIcon;
+            editTaskButton.setAttribute('height', '20px');
+            editTaskButton.setAttribute('width', '20px');
+            editTaskButton.addEventListener('click', () =>{
+                const dialogTaskEdit = document.querySelector('.dialogEditTask');
+                dialogTaskEdit.showModal();
+            });
+            taskDiplayMainDiv.appendChild(editTaskButton);
 
             //delete task button from project
             const deleteTaskButton = document.createElement('img');
