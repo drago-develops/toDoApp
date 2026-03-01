@@ -53,7 +53,7 @@ const dialogCreation = function(){
     optionToDo.textContent = 'Task'
     options.appendChild(optionToDo);
     optionToDo.addEventListener('click', () => {
-      dialogTaskDisplay();
+      dialogTaskDisplay('.dialogDisplay');
     })
 
 
@@ -84,8 +84,8 @@ function setAttributes(el, attrs) {
 }
 
 //creating task form in a dialog
-const dialogTaskDisplay = function(){
-  const dialogDisplay = document.querySelector('.dialogDisplay');
+const dialogTaskDisplay = function(selector, value){
+  const dialogDisplay = document.querySelector(`${selector}`);
   const toBeReplaced = dialogDisplay.firstChild
 
   //creating form

@@ -35,7 +35,8 @@ dialog:open::backdrop {
     justify-content: space-evenly;
     align-items: baseline;
 }
-.dialogDisplay{
+.dialogDisplay,
+.dialogTaskEditDisplay{
     width: 70%;
 }
 
