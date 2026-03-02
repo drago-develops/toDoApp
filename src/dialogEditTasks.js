@@ -1,6 +1,7 @@
 //dialog for editing tasks
 
 import { projectManager } from './projects.js';
+import { setAttributes } from './dialog.js'
 
 const dialogTaskEditCreation = function() {
     const body = document.querySelector('body');
@@ -29,13 +30,6 @@ const dialogTaskEditCreation = function() {
     const dialogEditDisplay = document.createElement('div');
     dialogEditDisplay.setAttribute('class', 'dialogTaskEditDisplay');
     dialogTaskEdit.appendChild(dialogEditDisplay);
-
-    //function to set multiple attributes
-    function setAttributes(el, attrs) {
-    for(var key in attrs) {
-        el.setAttribute(key, attrs[key]);
-    }
-    }
 
     const dialogTaskDisplay = function(){
         const dialogDisplay = document.querySelector('.dialogTaskEditDisplay');

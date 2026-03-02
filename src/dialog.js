@@ -292,7 +292,7 @@ const submitProjectButtonFunction = function(){
   console.log(projectManager.getAll());
 }
 
-export { dialogTaskDisplay }
+export { dialogTaskDisplay, setAttributes }
 
 
 
