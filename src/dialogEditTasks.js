@@ -155,4 +155,52 @@ const dialogTaskEditCreation = function() {
     dialogTaskDisplay();
 }
 
-export { dialogTaskEditCreation }
+const getTaskDetailsForEdits = function(event){
+    // The <img> was clicked → parent is the task div
+    const taskDiv = event.target.closest(".taskDiplayMainDiv");
+
+    const taskId = taskDiv.dataset.taskId;
+
+    // find the correct project 
+    const projects = projectManager.getAll();
+    const project = projects.find(project =>
+        project.projectArray.some(task => task.id === taskId)
+    );
+
+    if (!project) return;
+
+    //find task 
+    const task = project.projectArray.find(task => task.id === taskId);
+    console.log(task)
+    return { task, project}
+}
+
+const fillInDetailsForEdits = function(taskDetails){
+    const titleDetail = document.querySelector('#getTaskTitle');
+    titleDetail.setAttribute('value', `${taskDetails.title}`);
+
+    const descriptionDetail = document.querySelector('#getTaskDescription');
+    descriptionDetail.textContent = `${taskDetails.descritpion}`;
+
+    const dueDateDetail = document.querySelector('#getTaskDueDate');
+    dueDateDetail.setAttribute('value', `${taskDetails.dueDate}`);
+
+    //priority of each task preselection 
+    //logic to select task priority lvl 
+    function priorityLvLDetail(lvl) {
+        const selectorLvl = {
+            "low": "low",
+            "medium": "medium",
+            "high": "high"
+        };
+        return selectorLvl[lvl];
+    }
+    document.getElementById(priorityLvLDetail(taskDetails.priority)).checked = true;
+    
+
+    const projectSelectionDetail = document.querySelector('#projectSelection');
+    //projectSelectionDetail.setAttribute('value', `${taskDetails.}`)
+
+}
+
+export { dialogTaskEditCreation, getTaskDetailsForEdits,  fillInDetailsForEdits}

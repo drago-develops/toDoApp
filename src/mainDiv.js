@@ -5,6 +5,7 @@ import pencilIcon from "./icons/pencil.svg"
 import { projectManager } from "./projects.js";
 import { dialogProjectDeleteCreation } from "./dialogDeleteProjects.js"
 import { setPendingProjectDeleteId } from "./deleteState.js";
+import { getTaskDetailsForEdits, fillInDetailsForEdits } from './dialogEditTasks.js'
 
 
 const homeDisplayButtonFunction = function () {
@@ -94,8 +95,9 @@ const projectMainDivPopulate = function (arr) {
             editTaskButton.src = pencilIcon;
             editTaskButton.setAttribute('height', '20px');
             editTaskButton.setAttribute('width', '20px');
-            editTaskButton.addEventListener('click', () =>{
+            editTaskButton.addEventListener('click', (event) =>{
                 const dialogTaskEdit = document.querySelector('.dialogEditTask');
+                getTaskDetailsForEdits(event);
                 dialogTaskEdit.showModal();
             });
             taskDiplayMainDiv.appendChild(editTaskButton);
@@ -266,9 +268,11 @@ const taskMainDivPopulate = function (arr) {
             editTaskButton.src = pencilIcon;
             editTaskButton.setAttribute('height', '20px');
             editTaskButton.setAttribute('width', '20px');
-            editTaskButton.addEventListener('click', () =>{
+            editTaskButton.addEventListener('click', (event) =>{
                 const dialogTaskEdit = document.querySelector('.dialogEditTask');
+                
                 dialogTaskEdit.showModal();
+                fillInDetailsForEdits(getTaskDetailsForEdits(event).task)
             });
             taskDiplayMainDiv.appendChild(editTaskButton);
 
