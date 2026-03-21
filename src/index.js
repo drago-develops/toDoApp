@@ -12,10 +12,10 @@ import { dialogProjectDeleteCreation } from "./dialogDeleteProjects.js"
 import { dialogTaskEditCreation } from "./dialogEditTasks.js"
 
 dialogCreation();
-dialogTaskEditCreation();
 sidebarMenu();
 homeDisplayButtonFunction();
 projectDisplayButtonFunction();
 dialogProjectDeleteCreation();
 // Load tasks on startup
 taskMainDivPopulate(projectJsonLocalStorageRetrive());
+dialogTaskEditCreation();

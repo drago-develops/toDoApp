@@ -121,17 +121,17 @@ const dialogTaskEditCreation = function() {
         taskFieldset.appendChild(selectProjectLabel);
 
         const selectProject = document.createElement('select');
-        setAttributes(selectProject, {'id':'projectSelection', 'name':'projectList'});
+        setAttributes(selectProject, {'id':'projectSelection', 'name':'projectsList'});
         taskFieldset.appendChild(selectProject);
 
         //loop that will add selection options of projects to the drop down
-        const projectList = projectManager.getAll();
+        const projectsList = projectManager.getAll();
 
-        for (const i in projectList){
-        const variableName  = document.createElement('option');
-        variableName.setAttribute('value', `${projectList[i].projectTitle}`);
-        variableName.textContent = `${projectList[i].projectTitle}`;
-        selectProject.appendChild(variableName);
+        for (const i in projectsList){
+            const variableName  = document.createElement('option');
+            variableName.setAttribute('value', `${projectsList[i].projectTitle}`);
+            variableName.textContent = `${projectsList[i].projectTitle}`;
+            selectProject.appendChild(variableName);
         }
 
         //submit button for task
@@ -171,7 +171,6 @@ const getTaskDetailsForEdits = function(event){
 
     //find task 
     const task = project.projectArray.find(task => task.id === taskId);
-    console.log(task)
     return { task, project}
 }
 
