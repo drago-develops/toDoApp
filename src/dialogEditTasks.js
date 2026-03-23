@@ -1,7 +1,9 @@
 //dialog for editing tasks
 
 import { projectManager } from './projects.js';
-import { setAttributes } from './dialog.js'
+import { setAttributes, submitTaskButtonFunction, addTaskToAProject } from './dialog.js'
+import { projectJsonToLocalStorage, projectJsonLocalStorageRetrive } from "./json.js"
+import { blankSlateMainDiv, taskMainDivPopulate } from "./mainDiv.js"
 
 const dialogTaskEditCreation = function() {
     const body = document.querySelector('body');
@@ -149,6 +151,7 @@ const dialogTaskEditCreation = function() {
         //now task need to be displayed on main div
         blankSlateMainDiv();
         taskMainDivPopulate(projectJsonLocalStorageRetrive());
+
         })
 
     }; 
