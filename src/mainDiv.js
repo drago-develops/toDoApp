@@ -4,7 +4,7 @@ import trashCan from "./icons/trashCan.svg";
 import pencilIcon from "./icons/pencil.svg"
 import { projectManager } from "./projects.js";
 import { dialogProjectDeleteCreation } from "./dialogDeleteProjects.js"
-import { setPendingProjectDeleteId } from "./deleteState.js";
+import { setPendingProjectDeleteId, setPendingTaskEditId } from "./deleteState.js";
 import { getTaskDetailsForEdits, fillInDetailsForEdits } from './dialogEditTasks.js'
 
 
@@ -96,6 +96,9 @@ const projectMainDivPopulate = function (arr) {
             editTaskButton.setAttribute('height', '20px');
             editTaskButton.setAttribute('width', '20px');
             editTaskButton.addEventListener('click', (event) =>{
+                const taskDivForEdit = event.currentTarget.closest('.taskDiplayMainDiv');
+                const taskDivForEditId = taskDivForEdit.dataset.taskId;
+                setPendingTaskEditId(taskDivForEditId);
                 const dialogTaskEdit = document.querySelector('.dialogEditTask');
                 getTaskDetailsForEdits(event);
                 dialogTaskEdit.showModal();
@@ -269,6 +272,9 @@ const taskMainDivPopulate = function (arr) {
             editTaskButton.setAttribute('height', '20px');
             editTaskButton.setAttribute('width', '20px');
             editTaskButton.addEventListener('click', (event) =>{
+                const taskDivForEdit = event.currentTarget.closest('.taskDiplayMainDiv');
+                const taskDivForEditId = taskDivForEdit.dataset.taskId;
+                setPendingTaskEditId(taskDivForEditId);
                 const dialogTaskEdit = document.querySelector('.dialogEditTask');
                 
                 dialogTaskEdit.showModal();
@@ -308,4 +314,4 @@ function priorityLvLHandler(lvl) {
     return selectorLvl[lvl];
 }
 
-export { homeDisplayButtonFunction, taskMainDivPopulate, projectMainDivPopulate, blankSlateMainDiv, projectDisplayButtonFunction, deleteProjectButtonFunction };
+export { homeDisplayButtonFunction, taskMainDivPopulate, projectMainDivPopulate, blankSlateMainDiv, projectDisplayButtonFunction, deleteProjectButtonFunction, deleteTaskButtonFunction };

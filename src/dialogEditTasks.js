@@ -4,6 +4,7 @@ import { projectManager } from './projects.js';
 import { setAttributes, submitTaskButtonFunction, addTaskToAProject } from './dialog.js'
 import { projectJsonToLocalStorage, projectJsonLocalStorageRetrive } from "./json.js"
 import { blankSlateMainDiv, taskMainDivPopulate } from "./mainDiv.js"
+import { clearPendingTaskEditId, getPendingTaskEditId } from './deleteState.js';
 
 const dialogTaskEditCreation = function() {
     const body = document.querySelector('body');
@@ -141,21 +142,44 @@ const dialogTaskEditCreation = function() {
         setAttributes(submitTaskButton, {'type':'submit', 'class':'submitTaskButton','value':'Edit Task'})
         taskFieldset.appendChild(submitTaskButton);
 
-        submitTaskButton.addEventListener('click', () =>{
-        submitTaskButtonFunction();
-        console.log(submitTaskButtonFunction().newTask)
-        //adding task to a project function
-        addTaskToAProject(submitTaskButtonFunction().newTask)
-        //storing task in localStorage
-        projectJsonToLocalStorage();
-        //now task need to be displayed on main div
-        blankSlateMainDiv();
-        taskMainDivPopulate(projectJsonLocalStorageRetrive());
-
+        submitTaskButton.addEventListener('click', (event) =>{
+            submitTaskButtonFunction();
+            console.log(submitTaskButtonFunction().newTask)
+            //adding task to a project function
+            addTaskToAProject(submitTaskButtonFunction().newTask)
+            //storing task in localStorage
+            projectJsonToLocalStorage();
+            deleteTaskButtonFunctionForEdit();
+            clearPendingTaskEditId();
+            blankSlateMainDiv();
+            taskMainDivPopulate(projectJsonLocalStorageRetrive());            
         })
 
     }; 
     dialogTaskDisplay();
+}
+
+const deleteTaskButtonFunctionForEdit = function(){
+    console.log("edit img button clicked")
+    const taskId = getPendingTaskEditId();
+
+    // find the correct project 
+    const projects = projectManager.getAll();
+    const project = projects.find(project =>
+        project.projectArray.some(task => task.id === taskId)
+    );
+
+    if (!project) return;
+
+    //find task and remove it 
+    const task = project.projectArray.find(task => task.id === taskId);
+
+    if (task) {
+        project.removeTaskFromProject(task);
+    }
+    
+    // update localStorage
+    projectJsonToLocalStorage();
 }
 
 const getTaskDetailsForEdits = function(event){
