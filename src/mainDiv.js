@@ -2,6 +2,7 @@ import { projectJsonLocalStorageRetrive, projectJsonToLocalStorage } from "./jso
 import trashCanOutline  from "./icons/trashCanOutline.svg";
 import trashCan from "./icons/trashCan.svg";
 import pencilIcon from "./icons/pencil.svg"
+import circleIcon from "./icons/circle.svg"
 import { projectManager } from "./projects.js";
 import { dialogProjectDeleteCreation } from "./dialogDeleteProjects.js"
 import { setPendingProjectDeleteId, setPendingTaskEditId } from "./deleteState.js";
@@ -89,11 +90,19 @@ const projectMainDivPopulate = function (arr) {
             taskCompletion.textContent = `Concluded: ${complete}`;
             dropDownDetails.appendChild(taskCompletion);
 
+            //completed button
+            const taskComplitionButton = document.createElement('img');
+            taskComplitionButton.setAttribute('class', 'complitionButton');
+            taskComplitionButton.src = circleIcon;
+            taskComplitionButton.setAttribute('height', '20px');
+            taskComplitionButton.setAttribute('width', '20px');
+            taskDiplayMainDiv.appendChild(taskComplitionButton);
+
             //edit task button
             const editTaskButton = document.createElement('img');
             editTaskButton.setAttribute('class', 'editTaskButton');
             editTaskButton.src = pencilIcon;
-            editTaskButton.setAttribute('height', '20px');
+            editTaskButton.setAttribute('height', '20px');-
             editTaskButton.setAttribute('width', '20px');
             editTaskButton.addEventListener('click', (event) =>{
                 const taskDivForEdit = event.currentTarget.closest('.taskDiplayMainDiv');
@@ -264,6 +273,14 @@ const taskMainDivPopulate = function (arr) {
             taskCompletion.setAttribute('class', 'taskSeeCompletion');
             taskCompletion.textContent = `Concluded: ${complete}`;
             dropDownDetails.appendChild(taskCompletion);
+
+            //completed button
+            const taskComplitionButton = document.createElement('img');
+            taskComplitionButton.setAttribute('class', 'complitionButton');
+            taskComplitionButton.src = circleIcon;
+            taskComplitionButton.setAttribute('height', '20px');
+            taskComplitionButton.setAttribute('width', '20px');
+            taskDiplayMainDiv.appendChild(taskComplitionButton);
 
             //edit task button
             const editTaskButton = document.createElement('img');
